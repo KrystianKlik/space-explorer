@@ -123,12 +123,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c9ef4db6eefee145bac2981608fcbaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  szybkoscObrotu: 1
-  Osx: 500
-  Osz: 500
-  Osy: 40
+  revolvingSpeed: 1
+  Xaxis: 3844
+  Zaxis: 3840
+  Yaxis: 5
   centerPoint: {fileID: 356950567}
-  rotSpeed: 100
+  rotSpeed: 10
   rotateClockwise: 0
 --- !u!1 &176189525 stripped
 GameObject:
@@ -145,10 +145,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c9ef4db6eefee145bac2981608fcbaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  szybkoscObrotu: 1
-  Osx: 45866
-  Osz: 70006
-  Osy: -100
+  revolvingSpeed: 1
+  Xaxis: 57910
+  Zaxis: 57910
+  Yaxis: 0
   centerPoint: {fileID: 1010434670}
   rotSpeed: 1
   rotateClockwise: 0
@@ -241,12 +241,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c9ef4db6eefee145bac2981608fcbaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  szybkoscObrotu: 5
-  Osx: 149600
-  Osz: 149600
-  Osy: 300
+  revolvingSpeed: 1
+  Xaxis: 149698
+  Zaxis: 149698
+  Yaxis: 0
   centerPoint: {fileID: 1010434670}
-  rotSpeed: 1
+  rotSpeed: 0.1
   rotateClockwise: 0
 --- !u!1001 &889054146
 Prefab:
@@ -410,10 +410,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c9ef4db6eefee145bac2981608fcbaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  szybkoscObrotu: 1
-  Osx: 6
-  Osz: 6
-  Osy: 0
+  revolvingSpeed: 1
+  Xaxis: 5
+  Zaxis: 5
+  Yaxis: 0
   centerPoint: {fileID: 1010434670}
   rotSpeed: 1
   rotateClockwise: 0
