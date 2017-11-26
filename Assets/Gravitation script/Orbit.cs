@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obrot : MonoBehaviour
+public class Orbit : MonoBehaviour
 {
     public float revolvingSpeed;
 
