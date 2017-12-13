@@ -78,9 +78,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Gravitation script\Attractor.cs" />
-    <Compile Include="Assets\Gravitation script\Gravity.cs" />
-    <Compile Include="Assets\Gravitation script\Orbit.cs" />
+    <Compile Include="Assets\Skrypty grawitacyjne\Ellipse.cs" />
+    <Compile Include="Assets\Skrypty grawitacyjne\EllipseRenderer.cs" />
+    <Compile Include="Assets\Skrypty grawitacyjne\Orbit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Readme.txt" />
