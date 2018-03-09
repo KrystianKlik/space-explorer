@@ -78,9 +78,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Skrypty grawitacyjne\Ellipse.cs" />
-    <Compile Include="Assets\Skrypty grawitacyjne\EllipseRenderer.cs" />
-    <Compile Include="Assets\Skrypty grawitacyjne\Orbit.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\Ellipse.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\EllipseRenderer.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\KsiezycowyObrot.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\ObrotPlanety.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\OrbitMotion.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\PlanarGravityScript.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty ogolne\CameraController.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty ogolne\Przedmioty.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty rakiety\Attractor.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty rakiety\Rakieta.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty rakiety\Sterowanie.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Readme.txt" />
