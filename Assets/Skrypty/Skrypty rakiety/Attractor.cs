@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Attractor : MonoBehaviour
 {
     const float G = 6.674f;

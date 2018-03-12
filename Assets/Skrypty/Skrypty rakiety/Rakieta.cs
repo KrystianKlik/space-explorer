@@ -1,65 +1,99 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Rakieta : MonoBehaviour {
 
-    public float thrust = 5000f;
-    public float srodekMasy = 0.55f;
+    public Text wyswietlOdleglosc;
+    public Text wyswietlPredkosc;
+
+    public Vector3 centrumMasy;
+
+    //public Czas czas;
+
     public Rigidbody rb;
-    float dlugsocStatku = 1;
-    [SerializeField]
-    float predkoscObrotu = 20f;   
     public Rigidbody ziemia;
+
+    public ParticleSystem PS;
+
     [SerializeField]
+    private float thrust = 5000f;
+    [SerializeField]
+    private float predkoscObrotu = 20f;
+
+    
     private float odleglosc;
+    private float predkosc;
+  
 
     void Start()
     {
         //tu narazie jest ściernisko
         //  SrodekMasy();
-        rb.isKinematic = true;
+        // rb.isKinematic = true;
+        rb.centerOfMass = centrumMasy;
+        PS.Pause();
+       
     }
 
     void Update()
     {
+        
         Sterowanie();
-        odleglosc = Vector3.Distance(rb.position, ziemia.position);
+        OdlegloscPredkosc();
+        //czas.PrzyspieszenieCzasu();
+
     }
 
      void FixedUpdate()
     {
         Leci();
-
+    
     }
 
     void Leci()
     {
-        if (Input.GetButton("Jump"))
+        if (Input.GetButton("Jump"))  //chciałem dodać że traci masę podszas lotu ale rb.mass nie do końca spełnia moje oczekiwania
         {
-            rb.isKinematic = false;
+            //  rb.isKinematic = false;
             rb.AddRelativeForce(Vector3.forward * thrust * Time.deltaTime);
             Debug.Log("leci");
-            
+            PS.Play();
         }
+        else if (!(Input.GetButton("Jump")))
+        {
+            PS.Stop();
+        }
+    }
 
+    void OdlegloscPredkosc()
+    {
+
+        //  odleglosc = Vector3.Distance(rb.position, ziemia.position);
+
+        
+        odleglosc = Vector3.Distance(rb.transform.position, ziemia.transform.position) ;
+        odleglosc = odleglosc * 1000 - 3011100;
+   
+        predkosc = rb.velocity.magnitude * 16;
+       
+
+        wyswietlOdleglosc.text = "Odleglosc: " + Mathf.RoundToInt(odleglosc).ToString() + "m";
+        wyswietlPredkosc.text = "Predkosc: " + Mathf.RoundToInt(predkosc).ToString() + "km/h";
     }
 
     public void Sterowanie()
     {
   
-        float obrotWertykalny = Input.GetAxis("Horizontal") * predkoscObrotu * Time.deltaTime;
-        float obrotHoryzontalny = Input.GetAxis("Vertical") * predkoscObrotu * Time.deltaTime;
-        transform.Rotate(0, 0, obrotWertykalny);
-        transform.Rotate(0, obrotHoryzontalny, 0);
+        float z = Input.GetAxis("Horizontal") * predkoscObrotu * Time.deltaTime;
+        float x = Input.GetAxis("Vertical") * predkoscObrotu * Time.deltaTime;
+        transform.Rotate(0, 0, z);
+        transform.Rotate(x, 0, 0);
     }
 
+    
 
-    //void Srodekmasy()
-    //{
-    //    rb = getcomponent<rigidbody>();
-    //    rb.centerofmass = new vector3(0f, srodekmasy * dlugsocstatku, 0f);
-    //}
 
 }
 

@@ -1,106 +1,63 @@
 ﻿using UnityEngine;
-using System.Collections;
-
-/// <summary>
-/// CameraController - script that manages camera movement.
-/// </summary>
 public class CameraController : MonoBehaviour
 {
-    public static CameraController Instance { get; private set; }
 
-    // The object we are tracking with the camera
-    [SerializeField]
-    GameObject target;
+    protected Transform _XForm_Camera;
+    protected Transform _XForm_Parent;
 
-    // y-offset from our target
-    [SerializeField]
-    float offset = 0;
+    public GameObject Rakieta;
 
-    // Is the rocket flying?
-    bool flying = false;
-    // Does the rocket still have fuel?
-   // bool hasFuel = true;
+    protected Vector3 _LocalRotation;
+    protected float _CameraDistance = 10f;
 
-    void Awake()
+    public float MouseSensitivity = 4f;
+    public float ScrollSensitvity = 2f;
+    public float OrbitDampening = 10f;
+    public float ScrollDampening = 6f;
+
+    public bool CameraDisabled = false;
+
+    // Use this for initialization 
+    void Start()
     {
-        Instance = this;
+        this._XForm_Camera = this.transform; this._XForm_Parent = this.transform.parent;
     }
 
-    // Use this for initialization
-    //void Start()
-    //{
-    //    Reset();
-    //}
-
-    /// <summary>
-    /// Resets the camera's position and state
-    /// </summary>
-    //public void Reset()
-    //{
-    //    flying = false;
-    //    hasFuel = true;
-    //    RenderSettings.fog = false;
-
-    //    var newPos = transform.position;
-    //    // Track x-position
-    //    newPos.x = target.transform.position.x;
-
-    //    // Track y-position + offset
-    //    newPos.y = target.transform.position.y + offset;
-
-    //    transform.position = newPos;
-    //}
-
-    void Update()
+    void LateUpdate()
     {
-        if (flying)
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            CameraDisabled = !CameraDisabled;
+
+        if (!CameraDisabled)
         {
-            // Track x-position if the rocket is still flying
-            var newPos = transform.position;
-            newPos.x = target.transform.position.x;
+            //Rotation of the Camera based on Mouse Coordinates if
+           if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+            {
+                _LocalRotation.x += Input.GetAxis("Mouse X") * MouseSensitivity;
+                _LocalRotation.y -= Input.GetAxis("Mouse Y") * MouseSensitivity;
 
-            // Screen-shake horizontally if using fuel
-            //if (hasFuel)
-            //{
-            //    newPos.x += Random.Range(-0.15f, 0.15f);
-            //}
-
-            // Track y-position if the rocket is still flying
-            newPos.y = target.transform.position.y + offset;
-            transform.position = newPos;
+                ////Clamp the y Rotation to horizon and not flipping over at the top 
+                //if (_LocalRotation.y < 0f) _LocalRotation.y = 0f;
+                //else if (_LocalRotation.y > 90f)
+                //    _LocalRotation.y = 90f;
+            }
+            //Zooming Input from our Mouse Scroll Wheel
+            if (Input.GetAxis("Mouse ScrollWheel") != 0f)
+            {
+                float ScrollAmount = Input.GetAxis("Mouse ScrollWheel") * ScrollSensitvity;
+                ScrollAmount *= (this._CameraDistance * 0.3f);
+                this._CameraDistance += ScrollAmount * -1f;
+                this._CameraDistance = Mathf.Clamp(this._CameraDistance, 1.5f, 100f);
+            }
         }
-    }
 
-    /// <summary>
-    /// Called when the rocket starts flying.
-    /// </summary>
-    public void OnFlyingStarted()
-    {
-        flying = true;
-    }
+        //Actual Camera Rig Transformations 
+        Quaternion QT = Quaternion.Euler(_LocalRotation.y, _LocalRotation.x, 0);
+        this._XForm_Parent.rotation = Quaternion.Lerp(this._XForm_Parent.rotation, QT, Time.deltaTime * OrbitDampening);
 
-    /// <summary>
-    /// Called when the rocket runs out of fuel.
-    /// </summary>
-    //public void OnFuelEmpty()
-    //{
-    //    hasFuel = false;
-    //}
-
-    /// <summary>
-    /// Called when the rocket is no longer moving upwards.
-    /// </summary>
-    public void OnFlyingEnded()
-    {
-        flying = false;
-    }
-
-    /// <summary>
-    /// Sets the camera's target to an object, to track it.
-    /// </summary>
-    /// <param name="inTarget">The object to track.</param>
-    void SetTarget(GameObject inTarget)
-    {
-        target = inTarget;
+             if (this._XForm_Camera.localPosition.z != this._CameraDistance * -1f)
+        {
+            this._XForm_Camera.localPosition = new Vector3(0f, 0f, Mathf.Lerp(this._XForm_Camera.localPosition.z, this._CameraDistance * -1f, Time.deltaTime * ScrollDampening));
+        }
     }
 }

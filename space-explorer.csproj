@@ -78,6 +78,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\LowPolyNature\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\LowPolyNature\Scripts\PlayerFollow.cs" />
     <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\Ellipse.cs" />
     <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\EllipseRenderer.cs" />
     <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\KsiezycowyObrot.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\OrbitMotion.cs" />
     <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\PlanarGravityScript.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\CameraController.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty ogolne\Czas.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Przedmioty.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Attractor.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Rakieta.cs" />

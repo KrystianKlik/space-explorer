@@ -9,14 +9,17 @@ public class Przedmioty : MonoBehaviour
     public Transform miejsce;
     public Button yourButton;
 
+ 
+
     //void Update()
     //{
     //    if (Input.GetMouseButtonDown(0)&&(yourButton.enabled)
     //        Instantiate(czesc, miejsce.position, miejsce.rotation);
     //}
 
-   public void Update()
+    public void Start()
     {
+     
         Button btn = yourButton.GetComponent<Button>();
         btn.onClick.AddListener(Tworz);
     }
@@ -25,6 +28,7 @@ public class Przedmioty : MonoBehaviour
     void Tworz()
     {
         Instantiate(czesc, miejsce.position, miejsce.rotation);
+        Debug.Log("Cos powstalo");
     }
 
 
