@@ -25,7 +25,9 @@ public class Rakieta : MonoBehaviour {
     
     private float odleglosc;
     private float predkosc;
-  
+
+    //cwałująca Valkiria 
+    //odyseja kosmiczna
 
     void Start()
     {
@@ -58,9 +60,9 @@ public class Rakieta : MonoBehaviour {
         {
             //  rb.isKinematic = false;
             rb.AddRelativeForce(Vector3.forward * thrust * Time.deltaTime);
-            Debug.Log("leci");
+            //Debug.Log("leci");
             PS.Play();
-        }
+        } 
         else if (!(Input.GetButton("Jump")))
         {
             PS.Stop();
