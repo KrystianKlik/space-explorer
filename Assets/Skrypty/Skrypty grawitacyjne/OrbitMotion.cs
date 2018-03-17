@@ -7,7 +7,10 @@ public class OrbitMotion : MonoBehaviour {
     public Transform orbitingObject;
     public Ellipse orbitPath;
 
-  
+    public Rigidbody planeta;
+
+   [Range(1, 100)]
+    public float szybkoscObrotu = 1f;
 
     [Range(0,1)]
     public float orbitProgress = 0f;
@@ -27,7 +30,10 @@ public class OrbitMotion : MonoBehaviour {
         StartCoroutine(AnimateOrbit());
 	}
 
-
+     void Update()
+    {
+        planeta.transform.Rotate(0, 0, (szybkoscObrotu) * Time.deltaTime);
+    }
 
     void SetOrbitingObjectPosition()
     {
@@ -47,5 +53,7 @@ public class OrbitMotion : MonoBehaviour {
         }
 
     }
+
+
 
 }

@@ -8,6 +8,6 @@ public class ObrotPlanety : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {    
-        transform.Rotate(0, (szybkoscObrotu/10000) * Time.deltaTime , 0);
+        transform.Rotate(0, 0 , (szybkoscObrotu) * Time.deltaTime);
     }
 }

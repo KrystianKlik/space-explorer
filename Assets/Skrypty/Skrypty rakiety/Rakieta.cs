@@ -16,24 +16,23 @@ public class Rakieta : MonoBehaviour {
     public Rigidbody ziemia;
 
     public ParticleSystem PS;
-
+    
     [SerializeField]
     private float thrust = 5000f;
     [SerializeField]
     private float predkoscObrotu = 20f;
 
+    public FixedJoint FJ;
     
     private float odleglosc;
     private float predkosc;
 
+    bool zrobione = true;
     //cwałująca Valkiria 
     //odyseja kosmiczna
 
     void Start()
-    {
-        //tu narazie jest ściernisko
-        //  SrodekMasy();
-        // rb.isKinematic = true;
+    { 
         rb.centerOfMass = centrumMasy;
         PS.Pause();
        
@@ -41,26 +40,28 @@ public class Rakieta : MonoBehaviour {
 
     void Update()
     {
-        
         Sterowanie();
         OdlegloscPredkosc();
-        //czas.PrzyspieszenieCzasu();
-
     }
 
      void FixedUpdate()
     {
         Leci();
-    
     }
 
     void Leci()
     {
-        if (Input.GetButton("Jump"))  //chciałem dodać że traci masę podszas lotu ale rb.mass nie do końca spełnia moje oczekiwania
+
+        if (Input.GetButton("Jump"))
         {
-            //  rb.isKinematic = false;
-            rb.AddRelativeForce(Vector3.forward * thrust * Time.deltaTime);
-            //Debug.Log("leci");
+            if (zrobione)
+            {
+                FJ.breakForce = 0;
+            }
+            zrobione = false;
+
+            rb.AddRelativeForce(Vector3.forward * thrust *Time.deltaTime);
+            
             PS.Play();
         } 
         else if (!(Input.GetButton("Jump")))
@@ -75,8 +76,7 @@ public class Rakieta : MonoBehaviour {
         //  odleglosc = Vector3.Distance(rb.position, ziemia.position);
 
         
-        odleglosc = Vector3.Distance(rb.transform.position, ziemia.transform.position) ;
-        odleglosc = odleglosc * 1000 - 3011100;
+        odleglosc = Vector3.Distance(rb.transform.position, ziemia.position) - 6300 ;
    
         predkosc = rb.velocity.magnitude * 16;
        
@@ -87,10 +87,10 @@ public class Rakieta : MonoBehaviour {
 
     public void Sterowanie()
     {
-  
+ 
         float z = Input.GetAxis("Horizontal") * predkoscObrotu * Time.deltaTime;
         float x = Input.GetAxis("Vertical") * predkoscObrotu * Time.deltaTime;
-        transform.Rotate(0, 0, z);
+        transform.Rotate(0, z, 0);
         transform.Rotate(x, 0, 0);
     }
 
