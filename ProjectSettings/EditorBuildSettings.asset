@@ -6,5 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Poziomy/Menu.unity
+    guid: 7eac9cf6fa44fa743b0bd473322355bf
+  - enabled: 1
     path: Assets/Gra glowna.unity
     guid: 2e4ecabbb9107d94c90d1290de3adbc6

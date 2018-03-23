@@ -30,10 +30,10 @@ public class OrbitMotion : MonoBehaviour {
         StartCoroutine(AnimateOrbit());
 	}
 
-     void Update()
-    {
-        planeta.transform.Rotate(0, 0, (szybkoscObrotu) * Time.deltaTime);
-    }
+    // void Update()
+    //{
+    //    planeta.transform.Rotate(0, 0, (szybkoscObrotu) * Time.deltaTime);
+    //}
 
     void SetOrbitingObjectPosition()
     {

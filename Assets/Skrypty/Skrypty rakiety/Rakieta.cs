@@ -10,24 +10,27 @@ public class Rakieta : MonoBehaviour {
 
     public Vector3 centrumMasy;
 
-    //public Czas czas;
+    public Collider coll;
 
     public Rigidbody rb;
     public Rigidbody ziemia;
 
     public ParticleSystem PS;
+    public ParticleSystem dym;
     
     [SerializeField]
     private float thrust = 5000f;
     [SerializeField]
     private float predkoscObrotu = 20f;
 
-    public FixedJoint FJ;
+    //public FixedJoint FJ;
     
     private float odleglosc;
     private float predkosc;
 
-    bool zrobione = true;
+
+
+    //bool zrobione = true;
     //cwałująca Valkiria 
     //odyseja kosmiczna
 
@@ -35,7 +38,7 @@ public class Rakieta : MonoBehaviour {
     { 
         rb.centerOfMass = centrumMasy;
         PS.Pause();
-       
+        dym.Pause();
     }
 
     void Update()
@@ -54,19 +57,21 @@ public class Rakieta : MonoBehaviour {
 
         if (Input.GetButton("Jump"))
         {
-            if (zrobione)
-            {
-                FJ.breakForce = 0;
-            }
-            zrobione = false;
+            //if (zrobione)
+            //{
+            //    FJ.breakForce = 0;
+            //}
+            //zrobione = false;
 
             rb.AddRelativeForce(Vector3.forward * thrust *Time.deltaTime);
             
             PS.Play();
+            dym.Play();
         } 
         else if (!(Input.GetButton("Jump")))
         {
             PS.Stop();
+            dym.Stop();
         }
     }
 
@@ -76,7 +81,7 @@ public class Rakieta : MonoBehaviour {
         //  odleglosc = Vector3.Distance(rb.position, ziemia.position);
 
         
-        odleglosc = Vector3.Distance(rb.transform.position, ziemia.position) - 6300 ;
+        odleglosc = Vector3.Distance(coll.transform.position, ziemia.position) - 6300 ;
    
         predkosc = rb.velocity.magnitude * 16;
        
@@ -87,11 +92,10 @@ public class Rakieta : MonoBehaviour {
 
     public void Sterowanie()
     {
- 
+        float r = Input.GetAxis("Obrot") * predkoscObrotu * Time.deltaTime;
         float z = Input.GetAxis("Horizontal") * predkoscObrotu * Time.deltaTime;
         float x = Input.GetAxis("Vertical") * predkoscObrotu * Time.deltaTime;
-        transform.Rotate(0, z, 0);
-        transform.Rotate(x, 0, 0);
+        transform.Rotate(x, z, r); 
     }
 
     

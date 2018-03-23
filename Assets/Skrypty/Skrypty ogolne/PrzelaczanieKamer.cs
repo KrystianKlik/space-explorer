@@ -60,7 +60,7 @@ public class PrzelaczanieKamer : MonoBehaviour {
             camPosition = 0;
         }
 
-        //Set camera position database
+      //  Set camera position database
         PlayerPrefs.SetInt("CameraPosition", camPosition);
 
         //Set camera position 1
