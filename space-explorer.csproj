@@ -96,11 +96,13 @@
     <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\ObrotStatku.cs" />
     <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\OrbitMotion.cs" />
     <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\PlanarGravityScript.cs" />
-    <Compile Include="Assets\Skrypty\Skrypty ogolne\CameraCollision.cs" />
-    <Compile Include="Assets\Skrypty\Skrypty ogolne\CameraFollow.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Czas.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty ogolne\Kamery\CameraCollision.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty ogolne\Kamery\CameraFollow.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty ogolne\Kamery\KameraZewnetrzna.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty ogolne\Kamery\PrzelaczanieKamer.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Przedmioty.cs" />
-    <Compile Include="Assets\Skrypty\Skrypty ogolne\PrzelaczanieKamer.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty rakiety\Booster.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Rakieta.cs" />
     <Compile Include="Assets\Skrypty\Sktypty testowe\KDTree.cs" />
     <Compile Include="Assets\Skrypty\Sktypty testowe\NearestPointTest.cs" />

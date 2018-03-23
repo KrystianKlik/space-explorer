@@ -23,7 +23,7 @@ public class Rakieta : MonoBehaviour {
     [SerializeField]
     private float predkoscObrotu = 20f;
 
-    //public FixedJoint FJ;
+    //public FixedJoint FJ; 
     
     private float odleglosc;
     private float predkosc;
@@ -39,6 +39,8 @@ public class Rakieta : MonoBehaviour {
         rb.centerOfMass = centrumMasy;
         PS.Pause();
         dym.Pause();
+        rb.drag = 1;
+        
     }
 
     void Update()
@@ -52,11 +54,12 @@ public class Rakieta : MonoBehaviour {
         Leci();
     }
 
-    void Leci()
+    public void Leci()
     {
 
         if (Input.GetButton("Jump"))
         {
+         
             //if (zrobione)
             //{
             //    FJ.breakForce = 0;
@@ -80,11 +83,12 @@ public class Rakieta : MonoBehaviour {
 
         //  odleglosc = Vector3.Distance(rb.position, ziemia.position);
 
+
+         odleglosc = Vector3.Distance(rb.transform.position, ziemia.transform.position) - 12720 ;
+        //  odleglosc = Vector3.ClampMagnitude(rb.transform.position, ziemia.transform.position);
+        if (odleglosc < 10) { predkosc = 0; }
+        else predkosc = rb.velocity.magnitude * 20;
         
-        odleglosc = Vector3.Distance(coll.transform.position, ziemia.position) - 6300 ;
-   
-        predkosc = rb.velocity.magnitude * 16;
-       
 
         wyswietlOdleglosc.text = "Odleglosc: " + Mathf.RoundToInt(odleglosc).ToString() + "m";
         wyswietlPredkosc.text = "Predkosc: " + Mathf.RoundToInt(predkosc).ToString() + "km/h";
@@ -92,9 +96,9 @@ public class Rakieta : MonoBehaviour {
 
     public void Sterowanie()
     {
-        float r = Input.GetAxis("Obrot") * predkoscObrotu * Time.deltaTime;
-        float z = Input.GetAxis("Horizontal") * predkoscObrotu * Time.deltaTime;
-        float x = Input.GetAxis("Vertical") * predkoscObrotu * Time.deltaTime;
+        float r = Input.GetAxis("Obrot") * predkoscObrotu * Time.deltaTime;  //qe  obrot
+        float z = Input.GetAxis("Horizontal") * predkoscObrotu * Time.deltaTime;//ad lewo prawo
+        float x = Input.GetAxis("Vertical") * predkoscObrotu * Time.deltaTime;//ws gora dol
         transform.Rotate(x, z, r); 
     }
 
