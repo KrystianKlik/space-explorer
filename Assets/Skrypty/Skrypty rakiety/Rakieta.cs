@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Rakieta : MonoBehaviour {
 
-    public Text wyswietlOdleglosc;
+    public Text wyswietlwysokosc;
     public Text wyswietlPredkosc;
 
     public Vector3 centrumMasy;
@@ -25,7 +25,7 @@ public class Rakieta : MonoBehaviour {
 
     //public FixedJoint FJ; 
     
-    private float odleglosc;
+    private float wysokosc;
     private float predkosc;
 
 
@@ -39,14 +39,14 @@ public class Rakieta : MonoBehaviour {
         rb.centerOfMass = centrumMasy;
         PS.Pause();
         dym.Pause();
-        rb.drag = 1;
+        rb.drag = 0.1f;
         
     }
 
     void Update()
     {
         Sterowanie();
-        OdlegloscPredkosc();
+        WysokoscPredkosc();
     }
 
      void FixedUpdate()
@@ -78,19 +78,22 @@ public class Rakieta : MonoBehaviour {
         }
     }
 
-    void OdlegloscPredkosc()
+    void WysokoscPredkosc()
     {
 
-        //  odleglosc = Vector3.Distance(rb.position, ziemia.position);
+        //  wysokosc = Vector3.Distance(rb.position, ziemia.position);
 
 
-         odleglosc = Vector3.Distance(rb.transform.position, ziemia.transform.position) - 12720 ;
-        //  odleglosc = Vector3.ClampMagnitude(rb.transform.position, ziemia.transform.position);
-        if (odleglosc < 10) { predkosc = 0; }
+         wysokosc = Vector3.Distance(rb.transform.position, ziemia.transform.position) - 12720 ;
+        //  wysokosc = Vector3.ClampMagnitude(rb.transform.position, ziemia.transform.position);
+        if (wysokosc < 10) { predkosc = 0; }
         else predkosc = rb.velocity.magnitude * 20;
-        
 
-        wyswietlOdleglosc.text = "Odleglosc: " + Mathf.RoundToInt(odleglosc).ToString() + "m";
+        if (wysokosc <= 1500) rb.drag = 0.1f;
+        else if ((wysokosc > 1500) && (wysokosc < 2000)) rb.drag = 0.05f;
+        else rb.drag = 0f;
+
+        wyswietlwysokosc.text = "wysokosc: " + Mathf.RoundToInt(wysokosc).ToString() + "m";
         wyswietlPredkosc.text = "Predkosc: " + Mathf.RoundToInt(predkosc).ToString() + "km/h";
     }
 

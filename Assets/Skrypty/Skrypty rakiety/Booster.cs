@@ -5,6 +5,7 @@ using UnityEngine;
 public class Booster : MonoBehaviour {
 
     public Rigidbody rb;
+    public Rigidbody ziemia;
     public FixedJoint FJ;
     public Vector3 miejsceWybuchu;
     [SerializeField]
@@ -15,7 +16,7 @@ public class Booster : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        rb.drag = 1;
+        rb.drag = 0.1f;
         odczepione = true;
      
     }
@@ -25,6 +26,7 @@ public class Booster : MonoBehaviour {
         
         Ogien();
         Odczepienie();
+        ZwiekszanieSieAtmosfery();
     }
 
     private void Ogien()
@@ -47,7 +49,14 @@ public class Booster : MonoBehaviour {
                 FJ.breakForce = 0;
                odczepione = false;
             }
-          
-      
+    }
+
+    void ZwiekszanieSieAtmosfery()
+    {
+        float wysokosc = Vector3.Distance(rb.transform.position, ziemia.transform.position) - 12720;
+       // Debug.Log("wysokosc boostera" + wysokosc);
+        if (wysokosc <= 1500) rb.drag = 0.1f;
+        else if ((wysokosc >1500) && (wysokosc < 2000))  rb.drag = 0.05f; 
+        else rb.drag = 0f;  
     }
 }
