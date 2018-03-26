@@ -3,23 +3,17 @@ using System.Collections;
 
 public class KameraZewnetrzna : MonoBehaviour
 {
-    public Transform target; //This will be your citizen
-    public float distance;
+    public Transform player;
 
-
-    void Update()
+     void LateUpdate()
     {
-        if (!target)
-        {
-            // Search for object with Player tag
-            var go = GameObject.FindWithTag("Player");
-            // Check we found an object with the player tag
-            if (go)
-                // Set the target to the object we found
-                target = go.transform;
-        }
+        Vector3 newPosition = player.position;
+        newPosition.y = transform.position.y;
+        transform.position = newPosition;
 
-        if (target)
-            transform.position = new Vector3(target.position.x, target.position.y + 25, target.position.z - distance);
+        transform.rotation = Quaternion.Euler(180f, 0f, 0f);
     }
+
+
+
 }

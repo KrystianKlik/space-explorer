@@ -37,8 +37,8 @@ public class Rakieta : MonoBehaviour {
     void Start()
     { 
         rb.centerOfMass = centrumMasy;
-        PS.Pause();
-        dym.Pause();
+        PS.Stop();
+        dym.Stop();
         rb.drag = 0.1f;
         
     }

@@ -6,18 +6,29 @@ public class Booster : MonoBehaviour {
 
     public Rigidbody rb;
     public Rigidbody ziemia;
+    public Rigidbody booster;
     public FixedJoint FJ;
     public Vector3 miejsceWybuchu;
     [SerializeField]
     private float thrust = 5000f;
 
+    public float force = 100.0f;
+    public float radius = 5.0f;
+    public float upwardModifier = 0.0f;
+    public ForceMode forceMode;
+
+
     public bool odczepione = true;
 
+    public ParticleSystem PS;
+    public ParticleSystem dym;
 
     // Use this for initialization
     void Start () {
         rb.drag = 0.1f;
         odczepione = true;
+        PS.Stop();
+        dym.Stop();
      
     }
 	
@@ -25,8 +36,13 @@ public class Booster : MonoBehaviour {
 	void Update () {
         
         Ogien();
-        Odczepienie();
+      
         ZwiekszanieSieAtmosfery();
+    }
+
+     void FixedUpdate()
+    {
+        Odczepienie();
     }
 
     private void Ogien()
@@ -36,7 +52,14 @@ public class Booster : MonoBehaviour {
             if (Input.GetKey(KeyCode.X))
             { 
                 rb.AddRelativeForce(Vector3.forward * thrust * Time.deltaTime);
+            PS.Play();
+            dym.Play();
             }
+            else
+        {
+            PS.Stop();
+            dym.Stop();
+        }
         //}
     }
 
@@ -48,6 +71,14 @@ public class Booster : MonoBehaviour {
            //  rb.AddExplosionForce(10.0f, miejsceWybuchu, 5  .0f, 2.0f );
                 FJ.breakForce = 0;
                odczepione = false;
+
+          ////  foreach(Collider col in Physics.OverlapSphere(transform.position, radius))
+          // // {
+          //      if(GameObject.FindWithTag("Rakieta"))
+          //      {
+          //      booster.AddExplosionForce(force, transform.position, radius, upwardModifier, forceMode);
+          //      }
+          // // }
             }
     }
 
