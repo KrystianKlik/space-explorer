@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "space-explorer", "space-explorer.csproj", "{215738F2-E4E7-59A3-243D-4A93B77DA098}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "space-explorer.Editor", "space-explorer.Editor.csproj", "{23B957A2-C620-97B8-EF48-097851E45601}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,10 +13,6 @@ Global
 		{215738F2-E4E7-59A3-243D-4A93B77DA098}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{215738F2-E4E7-59A3-243D-4A93B77DA098}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{215738F2-E4E7-59A3-243D-4A93B77DA098}.Release|Any CPU.Build.0 = Release|Any CPU
-		{23B957A2-C620-97B8-EF48-097851E45601}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23B957A2-C620-97B8-EF48-097851E45601}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23B957A2-C620-97B8-EF48-097851E45601}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23B957A2-C620-97B8-EF48-097851E45601}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

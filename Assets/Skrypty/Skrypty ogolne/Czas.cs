@@ -9,7 +9,7 @@ public class Czas : MonoBehaviour {
 
     public void PrzyspieszenieCzasu()
     {
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Alpha1))
         {
 
             if (Time.timeScale != 1.0F)
@@ -19,23 +19,23 @@ public class Czas : MonoBehaviour {
             Time.fixedDeltaTime = 0.02F * Time.timeScale;
         }
 
-        if (Input.GetKey(KeyCode.Alpha1))
+        if (Input.GetKey(KeyCode.Alpha2))
              Time.timeScale = 2f;
         
 
-        if (Input.GetKey(KeyCode.Alpha2))
+        if (Input.GetKey(KeyCode.Alpha3))
              Time.timeScale = 4f;
 
 
-        if (Input.GetKey(KeyCode.Alpha3))
+        if (Input.GetKey(KeyCode.Alpha4))
              Time.timeScale = 8f;
         
 
-        if (Input.GetKey(KeyCode.Alpha4))
+        if (Input.GetKey(KeyCode.Alpha5))
              Time.timeScale = 16f;  //powyżej tej wartosci już się ścina
         
 
-        if (Input.GetKey(KeyCode.Alpha5))
+        if (Input.GetKey(KeyCode.Alpha6))
             Time.timeScale = 100f;
     
     }

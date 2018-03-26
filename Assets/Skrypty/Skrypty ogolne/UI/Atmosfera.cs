@@ -7,25 +7,21 @@ public class Atmosfera : MonoBehaviour
 {
     
     public Slider slider;
-    public float wysokosc;
-
-    public float progress = 1f;
-
-    public Color bialyFill;
+    
+    [SerializeField]
+    private float wysokosc;
+    [SerializeField]
+    private float progress = 1f;
 
     public Rigidbody rb;
     public Rigidbody ziemia;
 
-     void Start()
-    {
-        slider.value = 1f;
-    }
-
-    void Update()
+    public void Update()
     {
         Atmo();
-      
     }
+
+
 
     public void Atmo()
     {
@@ -38,7 +34,7 @@ public class Atmosfera : MonoBehaviour
         else { progress = 0f; slider.value = progress; }
       
     }
-
+    
     //float progress = Mathf.Clamp01()
    // Slider.value;
 }
