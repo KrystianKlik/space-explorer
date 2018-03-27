@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Booster : MonoBehaviour {
 
-    public Rigidbody rb;
+   
     public Rigidbody ziemia;
     public Rigidbody booster;
     public FixedJoint FJ;
@@ -25,10 +25,10 @@ public class Booster : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        rb.drag = 0.1f;
+        booster.drag = 0.1f;
         odczepione = true;
         PS.Stop();
-        dym.Stop();
+      
      
     }
 	
@@ -49,16 +49,16 @@ public class Booster : MonoBehaviour {
     {
         //if (nieOdczepione)
       //  {
-            if (Input.GetKey(KeyCode.X))
+            if (Input.GetKey(KeyCode.X)&&(odczepione))
             { 
-                rb.AddRelativeForce(Vector3.forward * thrust * Time.deltaTime);
+                booster.AddRelativeForce(Vector3.forward * thrust * Time.deltaTime);
             PS.Play();
-            dym.Play();
+         
             }
             else
         {
             PS.Stop();
-            dym.Stop();
+          
         }
         //}
     }
@@ -84,10 +84,10 @@ public class Booster : MonoBehaviour {
 
     void ZwiekszanieSieAtmosfery()
     {
-        float wysokosc = Vector3.Distance(rb.transform.position, ziemia.transform.position) - 12720;
+        float wysokosc = Vector3.Distance(booster.transform.position, ziemia.transform.position) - 12720;
        // Debug.Log("wysokosc boostera" + wysokosc);
-        if (wysokosc <= 1500) rb.drag = 0.1f;
-        else if ((wysokosc >1500) && (wysokosc < 2000))  rb.drag = 0.05f; 
-        else rb.drag = 0f;  
+        if (wysokosc <= 1500) booster.drag = 0.1f;
+        else if ((wysokosc >1500) && (wysokosc < 2000))  booster.drag = 0.05f; 
+        else booster.drag = 0f;  
     }
 }

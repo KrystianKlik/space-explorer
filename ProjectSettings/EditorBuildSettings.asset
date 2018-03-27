@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Poziomy/Gra glowna.unity
     guid: 2e4ecabbb9107d94c90d1290de3adbc6
+  - enabled: 1
+    path: Assets/Poziomy/SpaceX.unity
+    guid: 8b1baf7bdf836ff4a8e59e21722fdd0b
