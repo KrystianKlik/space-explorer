@@ -9,15 +9,16 @@ public class FalconBoosterSrodkowy : MonoBehaviour
     public Rigidbody ziemia;
     public Rigidbody booster;
     public FixedJoint FJ;
-    public Vector3 miejsceWybuchu;
+  
     [SerializeField]
     private float thrust = 4000f;
 
-    public float force = 100.0f;
-    public float radius = 5.0f;
-    public float upwardModifier = 0.0f;
-    public ForceMode forceMode;
 
+
+    float  odliczanie;
+    public float dlugosc = 30f;
+
+    bool paliwo;
 
     public bool odczepione = true;
 
@@ -30,7 +31,8 @@ public class FalconBoosterSrodkowy : MonoBehaviour
         odczepione = true;
         PS.Stop();
         //  dym.Stop();
-
+        odliczanie = dlugosc;
+        paliwo = true;
     }
 
     // Update is called once per frame
@@ -51,11 +53,13 @@ public class FalconBoosterSrodkowy : MonoBehaviour
     {
         //if (nieOdczepione)
         //  {
-        if (Input.GetButton("Jump") && (odczepione))
+        if (Input.GetButton("Jump") && (odczepione) && (paliwo))
         {
             booster.AddRelativeForce(Vector3.forward * thrust * Time.deltaTime);
             PS.Play();
-            //  dym.Play();
+            odliczanie -= Time.deltaTime;
+            if (odliczanie <= 0f)
+            { paliwo = false; }
         }
         else
         {

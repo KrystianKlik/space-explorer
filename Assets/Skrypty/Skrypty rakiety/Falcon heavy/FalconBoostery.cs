@@ -8,36 +8,36 @@ public class FalconBoostery : MonoBehaviour {
     public Rigidbody ziemia;
     public Rigidbody booster;
     public FixedJoint FJ;
-    public Vector3 miejsceWybuchu;
+ 
     [SerializeField]
     private float thrust = 4000f;
 
-    public float force = 100.0f;
-    public float radius = 5.0f;
-    public float upwardModifier = 0.0f;
-    public ForceMode forceMode;
+    public float dlugosc = 100f;
+    float odliczanie;
 
+
+   
 
     public bool odczepione = true;
+    bool paliwo;
 
     public ParticleSystem PS;
    
     // Use this for initialization
     void Start()
     {
+        odliczanie = dlugosc;
         booster.drag = 0.1f;
         odczepione = true;
         PS.Stop();
-      //  dym.Stop();
+        paliwo = true;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
         Ogien();
-
         ZwiekszanieSieAtmosfery();
     }
 
@@ -50,18 +50,24 @@ public class FalconBoostery : MonoBehaviour {
     {
         //if (nieOdczepione)
         //  {
-        if (Input.GetButton("Jump") && (odczepione))
+        if (Input.GetButton("Jump") && (odczepione) && (paliwo))
         {
+           
             booster.AddRelativeForce(Vector3.forward * thrust * Time.deltaTime);
             PS.Play();
-          //  dym.Play();
+
+            odliczanie -= Time.deltaTime;
+            if (odliczanie <= 0f)
+            { paliwo = false; }
+
+
         }
         else
         {
             PS.Stop();
-           // dym.Stop();
+       
         }
-        //}
+   
     }
 
     void Odczepienie() //dzieki temu prostemu kodowi boostery sie odczepiaja
@@ -73,13 +79,6 @@ public class FalconBoostery : MonoBehaviour {
             FJ.breakForce = 0;
             odczepione = false;
 
-            ////  foreach(Collider col in Physics.OverlapSphere(transform.position, radius))
-            // // {
-            //      if(GameObject.FindWithTag("Rakieta"))
-            //      {
-            //      booster.AddExplosionForce(force, transform.position, radius, upwardModifier, forceMode);
-            //      }
-            // // }
         }
     }
 

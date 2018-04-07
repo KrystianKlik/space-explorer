@@ -113,9 +113,6 @@
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Falcon heavy\FalconBoostery.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Falcon heavy\FalconRakieta.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Rakieta.cs" />
-    <Compile Include="Assets\Skrypty\Sktypty testowe\KDTree.cs" />
-    <Compile Include="Assets\Skrypty\Sktypty testowe\NearestPointTest.cs" />
-    <Compile Include="Assets\Skrypty\Sktypty testowe\VertTriList.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />

@@ -11,7 +11,7 @@ public class Atmosfera : MonoBehaviour
     [SerializeField]
     private float wysokosc;
     [SerializeField]
-    private float progress = 1f;
+    private float progress = 0f;
 
     public Rigidbody rb;
     public Rigidbody ziemia;
