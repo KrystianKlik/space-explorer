@@ -13,6 +13,8 @@ public class Atmosfera : MonoBehaviour
     [SerializeField]
     private float progress = 0f;
 
+    
+
     public Rigidbody rb;
     public Rigidbody ziemia;
 
@@ -26,15 +28,18 @@ public class Atmosfera : MonoBehaviour
     public void Atmo()
     {
 
-        wysokosc = Vector3.Distance(rb.transform.position, ziemia.transform.position) - 12720;
+        wysokosc = Vector3.Distance(rb.transform.position, ziemia.transform.position) - 29506;
+        wysokosc *= 40;
         // Debug.Log("wysokosc boostera" + wysokosc);
 
-        if (wysokosc <= 1500) { progress = 1f; slider.value = progress; }
-        else if ((wysokosc > 1500) && (wysokosc < 2000)) { progress = 0.5f; slider.value = progress; }
-        else { progress = 0f; slider.value = progress; }
+        if (wysokosc <= 10000) { progress = 1f; slider.value = progress; } //troposhphere
+        else if ((wysokosc > 10000) && (wysokosc <= 30000)) { progress = .8f; slider.value = progress; } //stratosphere
+        else if ((wysokosc > 30000) && (wysokosc <= 50000)) { progress = .6f; slider.value = progress; } // mesosphere
+        else if ((wysokosc > 50000) && (wysokosc <= 400000)) { progress = .3f; slider.value = progress; } //thermosphere
+        else if (wysokosc > 400000) { progress = 0f; slider.value = progress; } //exosphere
+
+         
       
     }
-    
-    //float progress = Mathf.Clamp01()
-   // Slider.value;
+   
 }

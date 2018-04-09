@@ -27,10 +27,9 @@ public class FalconBoosterSrodkowy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        booster.isKinematic = true;
         booster.drag = 0.1f;
         odczepione = true;
-        PS.Stop();
-        //  dym.Stop();
         odliczanie = dlugosc;
         paliwo = true;
     }
@@ -38,10 +37,12 @@ public class FalconBoosterSrodkowy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        Ogien();
-
         ZwiekszanieSieAtmosfery();
+    }
+
+     void LateUpdate()
+    {
+        Ogien();
     }
 
     void FixedUpdate()
@@ -51,8 +52,7 @@ public class FalconBoosterSrodkowy : MonoBehaviour
 
     private void Ogien()
     {
-        //if (nieOdczepione)
-        //  {
+        
         if (Input.GetButton("Jump") && (odczepione) && (paliwo))
         {
             booster.AddRelativeForce(Vector3.forward * thrust * Time.deltaTime);
@@ -60,13 +60,14 @@ public class FalconBoosterSrodkowy : MonoBehaviour
             odliczanie -= Time.deltaTime;
             if (odliczanie <= 0f)
             { paliwo = false; }
+            booster.isKinematic = false;
         }
         else
         {
             PS.Stop();
-            // dym.Stop();
+      
         }
-        //}
+       
     }
 
     void Odczepienie() //dzieki temu prostemu kodowi boostery sie odczepiaja
@@ -74,26 +75,22 @@ public class FalconBoosterSrodkowy : MonoBehaviour
 
         if (Input.GetKey(KeyCode.J) && (odczepione))
         {
-            //  rb.AddExplosionForce(10.0f, miejsceWybuchu, 5  .0f, 2.0f );
+            //  booster.AddExplosionForce(10.0f, miejsceWybuchu, 5  .0f, 2.0f );
             FJ.breakForce = 0;
             odczepione = false;
-
-            ////  foreach(Collider col in Physics.OverlapSphere(transform.position, radius))
-            // // {
-            //      if(GameObject.FindWithTag("Rakieta"))
-            //      {
-            //      booster.AddExplosionForce(force, transform.position, radius, upwardModifier, forceMode);
-            //      }
-            // // }
+            booster.AddRelativeForce(0, 0, -100);
+           
         }
     }
 
-    void ZwiekszanieSieAtmosfery()
+   public void ZwiekszanieSieAtmosfery()
     {
         float wysokosc = Vector3.Distance(booster.transform.position, ziemia.transform.position) - 12720;
-        // Debug.Log("wysokosc boostera" + wysokosc);
-        if (wysokosc <= 1500) booster.drag = 0.1f;
-        else if ((wysokosc > 1500) && (wysokosc < 2000)) booster.drag = 0.05f;
-        else booster.drag = 0f;
+        wysokosc *= 40;
+        if (wysokosc <= 10000) booster.drag = 0.3f;
+        else if ((wysokosc > 30000) && (wysokosc <= 50000)) booster.drag = 0.1f;
+        else if ((wysokosc > 50000) && (wysokosc <= 400000)) booster.drag = 0.07f;
+        else if (wysokosc > 400000) booster.drag = 0f;
     }
+
 }

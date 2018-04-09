@@ -33,21 +33,20 @@ public class FalconRakieta : MonoBehaviour {
 
     void Start()
     {
+        
         rb.centerOfMass = centrumMasy;
         PS.Stop();
-      
         rb.drag = 0.1f;
-
     }
-
+        
     void Update()
     {
         Sterowanie();
         Wysokosc();
-
+     
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
         Leci();
     }
@@ -57,20 +56,12 @@ public class FalconRakieta : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.X))
         {
-
-            //if (zrobione)
-            //{
-            //    FJ.breakForce = 0;
-            //}
-            //zrobione = false;
-
             rb.AddRelativeForce(Vector3.forward * thrust * Time.deltaTime);
               PS.Play();
         }
         else if (!(Input.GetButton("Jump")))
             {
                 PS.Stop();
-
             }
         
     }
@@ -81,16 +72,18 @@ public class FalconRakieta : MonoBehaviour {
         //  wysokosc = Vector3.Distance(rb.position, ziemia.position);
 
 
-        wysokosc = Vector3.Distance(rb.transform.position, ziemia.transform.position) - 12720;
-        //  wysokosc = Vector3.ClampMagnitude(rb.transform.position, ziemia.transform.position);
+        wysokosc = Vector3.Distance(rb.transform.position, ziemia.transform.position) -29506  ;
+           wysokosc *= 80;
+        Debug.Log(wysokosc);
         if (wysokosc < 10) { predkosc = 0; }
-        else predkosc = rb.velocity.magnitude * 20;
+        else predkosc = rb.velocity.magnitude * 30;
 
-        if (wysokosc <= 1500) rb.drag = 0.1f;
-        else if ((wysokosc > 1500) && (wysokosc < 2000)) rb.drag = 0.05f;
-        else rb.drag = 0f;
+        if (wysokosc <= 10000) rb.drag = 0.3f;
+        else if ((wysokosc > 30000) && (wysokosc <= 50000)) rb.drag = 0.1f;
+        else if ((wysokosc > 50000) && (wysokosc <= 400000)) rb.drag = 0.07f;
+        else if (wysokosc > 400000) rb.drag = 0f;
 
-        wyswietlwysokosc.text = "wysokosc: " + Mathf.RoundToInt(wysokosc).ToString() + "m";
+            wyswietlwysokosc.text = "wysokosc: " + Mathf.RoundToInt(wysokosc).ToString() + "m";
         wyswietlPredkosc.text = "Predkosc: " + Mathf.RoundToInt(predkosc).ToString() + "km/h";
     }
 
