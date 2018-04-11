@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Planeta
   - Rakieta
+  - 2stage
   layers:
   - Default
   - TransparentFX

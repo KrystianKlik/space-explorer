@@ -18,20 +18,18 @@ public class wskaznikPaliwa : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
         paliwo();
-        
     }
 
     void paliwo()
     {
-        if (Input.GetButton("Jump") && (odliczanie<=40))
+        if (Input.GetButton("Jump") && (odliczanie < 160))
         {
+            
             odliczanie -= Time.deltaTime;
             slider.value = odliczanie;
-           // Debug.Log("wartosc w boosterze ", slider, " ", odliczanie);
-            Debug.Log(slider); Debug.Log(odliczanie);
         }
 
-        else if(Input.GetKey(KeyCode.X))
+        else if(Input.GetKey(KeyCode.X) && (odliczanie >170) )
         {
             odliczanie -= Time.deltaTime;
             slider.value = odliczanie;  

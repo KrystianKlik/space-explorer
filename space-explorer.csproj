@@ -108,6 +108,7 @@
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Kamery\PrzelaczanieKamer.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Przedmioty.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\UI\Atmosfera.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty ogolne\UI\PauseMenu.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Booster.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Falcon heavy\FalconBoosterSrodkowy.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Falcon heavy\FalconBoostery.cs" />
