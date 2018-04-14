@@ -94,13 +94,13 @@ public class FalconBoostery : MonoBehaviour
         float wysokosc = Vector3.Distance(booster.transform.position, ziemia.transform.position) - 29506;
         wysokosc *= 80;
         if (wysokosc <= 10000) booster.drag = 0.3f;
-        else if ((wysokosc > 10000) && (wysokosc <= 15000)) booster.drag = 0.1f;
-        else if ((wysokosc > 15000) && (wysokosc <= 20000)) booster.drag = 0.09f;
+        else if ((wysokosc > 10000) && (wysokosc <= 15000)) booster.drag = 0.2f;
+        else if ((wysokosc > 15000) && (wysokosc <= 20000)) booster.drag = 0.1f;
         else if ((wysokosc > 20000) && (wysokosc <= 25000)) booster.drag = 0.07f;
-        else if ((wysokosc > 25000) && (wysokosc <= 30000)) booster.drag = 0.05f;
-        else if ((wysokosc > 30000) && (wysokosc <= 40000)) booster.drag = 0.04f;
+        else if ((wysokosc > 25000) && (wysokosc <= 30000)) booster.drag = 0.03f;
+        else if ((wysokosc > 30000) && (wysokosc <= 40000)) booster.drag = 0.02f;
         else if ((wysokosc > 40000) && (wysokosc <= 50000)) booster.drag = 0.01f;
-        else if ((wysokosc > 50000) && (wysokosc <= 400000)) booster.drag = 0.0005f;
+        else if ((wysokosc > 50000) && (wysokosc <= 400000)) booster.drag = 0.00005f;
         else if (wysokosc > 400000) booster.drag = 0f;
     }
 

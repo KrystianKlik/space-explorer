@@ -2499,6 +2499,69 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1001 &798564434
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1540679631}
+    m_Modifications:
+    - target: {fileID: 4204271023112800, guid: d5141ad0fb4b5cf488fe7357cee9de18, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204271023112800, guid: d5141ad0fb4b5cf488fe7357cee9de18, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204271023112800, guid: d5141ad0fb4b5cf488fe7357cee9de18, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 34.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204271023112800, guid: d5141ad0fb4b5cf488fe7357cee9de18, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.2430566
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204271023112800, guid: d5141ad0fb4b5cf488fe7357cee9de18, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.09846398
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204271023112800, guid: d5141ad0fb4b5cf488fe7357cee9de18, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0.48138112
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204271023112800, guid: d5141ad0fb4b5cf488fe7357cee9de18, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.8363615
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204271023112800, guid: d5141ad0fb4b5cf488fe7357cee9de18, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204271023112800, guid: d5141ad0fb4b5cf488fe7357cee9de18, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204271023112800, guid: d5141ad0fb4b5cf488fe7357cee9de18, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662858332230598, guid: d5141ad0fb4b5cf488fe7357cee9de18, type: 2}
+      propertyPath: m_Name
+      value: Tree
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204271023112800, guid: d5141ad0fb4b5cf488fe7357cee9de18, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23603110059858798, guid: d5141ad0fb4b5cf488fe7357cee9de18,
+        type: 2}
+      propertyPath: m_SelectedEditorRenderState
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d5141ad0fb4b5cf488fe7357cee9de18, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &801263083
 GameObject:
   m_ObjectHideFlags: 0
@@ -3261,6 +3324,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1023730077}
+--- !u!4 &1026148183 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4204271023112800, guid: d5141ad0fb4b5cf488fe7357cee9de18,
+    type: 2}
+  m_PrefabInternal: {fileID: 798564434}
 --- !u!1 &1054220307
 GameObject:
   m_ObjectHideFlags: 0
@@ -3884,8 +3952,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1255514749}
-  m_LocalRotation: {x: 0.5670686, y: -0.6397239, z: -0.40999472, w: 0.31794807}
-  m_LocalPosition: {x: 1.3106996, y: -0.2150474, z: 0.7096603}
+  m_LocalRotation: {x: 0.52673835, y: -0.6813869, z: -0.4020638, w: 0.31081098}
+  m_LocalPosition: {x: 2.0934737, y: -0.33317924, z: 1.1746899}
   m_LocalScale: {x: 0.000033814522, y: 0.00003381451, z: 0.000033814566}
   m_Children: []
   m_Father: {fileID: 929379420}
@@ -4506,6 +4574,35 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1507288857}
+--- !u!1 &1540679630
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1540679631}
+  m_Layer: 0
+  m_Name: Drzewka
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1540679631
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1540679630}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 21097.78, y: 14064.3, z: 484911.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1026148183}
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1570444594
 GameObject:
   m_ObjectHideFlags: 0

@@ -75,7 +75,7 @@ public class FalconRakieta : MonoBehaviour {
         wysokosc = Vector3.Distance(rb.transform.position, ziemia.transform.position) -29506  ;
            wysokosc *= 80;
        
-        if (wysokosc < 10) { predkosc = 0; }
+        if (wysokosc < 200) { predkosc = 0; }
         else predkosc = rb.velocity.magnitude * 100;
 
         if (wysokosc <= 10000) rb.drag = 0.3f;
