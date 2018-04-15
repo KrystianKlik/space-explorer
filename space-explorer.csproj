@@ -109,10 +109,12 @@
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Przedmioty.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\UI\Atmosfera.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\UI\PauseMenu.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty ogolne\UI\Procenty.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Booster.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Falcon heavy\FalconBoosterSrodkowy.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Falcon heavy\FalconBoostery.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Falcon heavy\FalconRakieta.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty rakiety\Falcon heavy\UI falcon\PoczatekGry.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Falcon heavy\UI falcon\wskaznikPaliwa.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Rakieta.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
