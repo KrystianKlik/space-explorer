@@ -14,6 +14,12 @@ ModelImporter:
     100012: Booster_prawy
     100014: Dolny_Booster
     100016: Owiewka
+    100018: Owiewka_001
+    100020: Owiewka_Lewa
+    100022: Owiewka_Prawa
+    100024: Grid
+    100026: Satelita
+    100028: Cube
     400000: Cylinder
     400002: Cylinder_001
     400004: //RootNode
@@ -23,6 +29,12 @@ ModelImporter:
     400012: Booster_prawy
     400014: Dolny_Booster
     400016: Owiewka
+    400018: Owiewka_001
+    400020: Owiewka_Lewa
+    400022: Owiewka_Prawa
+    400024: Grid
+    400026: Satelita
+    400028: Cube
     2300000: Cylinder
     2300002: Cylinder_001
     2300004: //RootNode
@@ -32,6 +44,12 @@ ModelImporter:
     2300012: Booster_prawy
     2300014: Dolny_Booster
     2300016: Owiewka
+    2300018: Owiewka_001
+    2300020: Owiewka_Lewa
+    2300022: Owiewka_Prawa
+    2300024: Grid
+    2300026: Satelita
+    2300028: Cube
     3300000: Cylinder
     3300002: Cylinder_001
     3300004: //RootNode
@@ -41,6 +59,12 @@ ModelImporter:
     3300012: Booster_prawy
     3300014: Dolny_Booster
     3300016: Owiewka
+    3300018: Owiewka_001
+    3300020: Owiewka_Lewa
+    3300022: Owiewka_Prawa
+    3300024: Grid
+    3300026: Satelita
+    3300028: Cube
     4300000: Cylinder_001
     4300002: Cylinder
     4300004: Cone
@@ -49,6 +73,12 @@ ModelImporter:
     4300010: Booster_lewy
     4300012: Booster_prawy
     4300014: Dolny_Booster
+    4300016: Owiewka_001
+    4300018: Owiewka_Prawa
+    4300020: Owiewka_Lewa
+    4300022: Grid
+    4300024: Satelita
+    4300026: Cube
     7400000: Default Take
     9500000: //RootNode
   materials:

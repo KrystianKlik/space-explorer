@@ -93,6 +93,7 @@
     <Compile Include="Assets\EffectExamples\Shared\Scripts\ParticleCollision.cs" />
     <Compile Include="Assets\EffectExamples\Shared\Scripts\ParticleExamples.cs" />
     <Compile Include="Assets\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
+    <Compile Include="Assets\Satelita.cs" />
     <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\Attractor.cs" />
     <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\Ellipse.cs" />
     <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\EllipseRenderer.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\OrbitMotion.cs" />
     <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\PlanarGravityScript.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Czas.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty ogolne\Drag.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Kamery\CameraCollision.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Kamery\CameraFollow.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Kamery\KameraZewnetrzna.cs" />
@@ -110,13 +112,17 @@
     <Compile Include="Assets\Skrypty\Skrypty ogolne\UI\Atmosfera.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\UI\PauseMenu.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\UI\Procenty.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty ogolne\Wybuch.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Booster.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Falcon heavy\FalconBoosterSrodkowy.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Falcon heavy\FalconBoostery.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Falcon heavy\FalconRakieta.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty rakiety\Falcon heavy\Owiewka.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Falcon heavy\UI falcon\PoczatekGry.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Falcon heavy\UI falcon\wskaznikPaliwa.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Rakieta.cs" />
+    <Compile Include="Assets\Skrypty\Sktypty testowe\odczepianieRakiet.cs" />
+    <Compile Include="Assets\Skrypty\Sktypty testowe\OdczepienieOwiewek.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />

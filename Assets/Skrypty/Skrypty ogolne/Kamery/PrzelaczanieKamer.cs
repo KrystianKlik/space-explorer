@@ -7,8 +7,18 @@ public class PrzelaczanieKamer : MonoBehaviour {
     public GameObject cameraOne;
     public GameObject cameraTwo;
 
+    //public GameObject leftBooster;
+    //public GameObject rightBooster;
+    //public GameObject bottomBooster;
+
     AudioListener cameraOneAudioLis;
     AudioListener cameraTwoAudioLis;
+
+    //AudioListener cameraLeftBooster;
+    //AudioListener cameraRightBooster;
+    //AudioListener cameraBottomBooster;
+
+
 
     // Use this for initialization
     void Start()
@@ -17,6 +27,9 @@ public class PrzelaczanieKamer : MonoBehaviour {
         //Get Camera Listeners
         cameraOneAudioLis = cameraOne.GetComponent<AudioListener>();
         cameraTwoAudioLis = cameraTwo.GetComponent<AudioListener>();
+        //cameraLeftBooster = leftBooster.GetComponent<AudioListener>();
+        //cameraRightBooster = rightBooster.GetComponent<AudioListener>();
+        //cameraBottomBooster = bottomBooster.GetComponent<AudioListener>();
 
         //Camera Position Set
         cameraPositionChange(PlayerPrefs.GetInt("CameraPosition"));
@@ -82,6 +95,7 @@ public class PrzelaczanieKamer : MonoBehaviour {
             cameraOneAudioLis.enabled = false;
             cameraOne.SetActive(false);
         }
+
 
     }
 }

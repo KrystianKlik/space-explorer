@@ -5,9 +5,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class FalconBoosterSrodkowy : MonoBehaviour
-{
+{ 
+
     public Text masaCzesci;
-  
+
+    public Vector3 centrumMasy;
 
     public Slider slider;
     public Slider _ilosc;
@@ -15,11 +17,13 @@ public class FalconBoosterSrodkowy : MonoBehaviour
 
     float ciag;
     float ilosc;
+    float wysokosc;
 
     public Rigidbody ziemia;
     public Rigidbody booster;
 
-    public FixedJoint FJ;
+    //public FixedJoint FJ;
+    public ConfigurableJoint CFJ;
 
     public Button yourButton;
 
@@ -28,119 +32,127 @@ public class FalconBoosterSrodkowy : MonoBehaviour
      float dlugosc_do_masy;
 
     bool paliwo;
+    bool leci = false;
 
     public bool odczepione = true;
 
+    public GameObject explosionEffect;
+
+
     public ParticleSystem PS;
+   
 
     // Use this for initialization
     void Start()
     {
-       
-    
+
+        booster.centerOfMass = centrumMasy;
         booster.isKinematic = true;
         odczepione = true;
+        leci = false;
         //odliczanie = ilosc;
-        paliwo = true;
-
+        paliwo = false;
         masa = mass;
-       
-        
+        PS.Stop();
+
     }
-
-
-
-
-
-
-
 
     // Update is called once per frame
     void Update()
     {
-        ZwiekszanieSieAtmosfery();
+       
         Odczepienie();
 
         Button btn = yourButton.GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);
 
         masaCzesci.text = "Glowny Booster: " + Mathf.RoundToInt(masa*1000).ToString() + "kg";
-    }
+    
+    }   
 
      void FixedUpdate()
     {
         Ogien();
     }
 
-  
-
-    private void Ogien()
+    void Ogien()
     {
-       
-
-        if (Input.GetButton("Jump") && (odczepione) && (paliwo))
+        if (Input.GetButton("Jump") && (odczepione))
         {
             booster.isKinematic = false;
-            booster.AddRelativeForce(Vector3.forward * ciag * Time.deltaTime);
-            PS.Play();
+            paliwo = true;
+        }
 
-            
-            ilosc -= Time.deltaTime;
-            slider.value = ilosc;
-
-            
-
-            if (ilosc <= 0f)
-            { paliwo = false; }
-
-            if ((odczepione) && (masa >= .3))
+        if (paliwo)
+        {
+            if (ilosc > 0)
             {
-
-                masa -= Time.deltaTime * 100 / (ciag * dlugosc_do_masy);
-                booster.mass = masa;
+                booster.AddRelativeForce(Vector3.forward * ciag * Time.deltaTime);
+                ilosc -= Time.deltaTime;
+                slider.value = ilosc;
+                PS.Play();
             }
-            else mass = .2f;
+
+            else if (ilosc <= 0)
+            {
+                PS.Stop();
+                Debug.Log("Skonczylo sie paliwo");
+            }
+        }
+
+        
+    }
+  
+
+    //private void Ogien()
+    //{
+       
+
+    //    if (Input.GetButton("Jump") && (odczepione) && (paliwo))
+    //    {
+    //        booster.isKinematic = false;
+    //        booster.AddRelativeForce(Vector3.forward * ciag * Time.deltaTime);
+
+    //        ilosc -= Time.deltaTime;
+    //        slider.value = ilosc;
+
+    //        if ((ilosc <= 0f) || (ciag == 0))
+    //        {
+    //            paliwo = false;
+    //            PS.Stop(); 
+    //        }
+    //        else PS.Play();
+
+    //        if ((odczepione) && (masa >= .3))
+    //        {
+
+    //            //masa -= Time.deltaTime * 100 / (ciag * dlugosc_do_masy);
+    //            booster.mass = masa;
+    //        }
+    //        else mass = .2f;
 
          
 
-        }
-        else
-        {
-            PS.Stop();
-           
-        }
+    //    }
+    //    else
+    //    {
+    //        PS.Stop();
+    //    }
        
-    }
+    //}
+
+
 
     void Odczepienie() //dzieki temu prostemu kodowi boostery sie odczepiaja
     {
-
         if (Input.GetKey(KeyCode.J) && (odczepione))
         {
-            //  booster.AddExplosionForce(10.0f, miejsceWybuchu, 5  .0f, 2.0f );
-            FJ.breakForce = 0;
+            CFJ.breakForce = 0;
             odczepione = false;
-            booster.AddRelativeForce(0, 0, -100);
         }
     }
 
   
-
-    public void ZwiekszanieSieAtmosfery()
-    {
-        float wysokosc = Vector3.Distance(booster.transform.position, ziemia.transform.position) - 29506;
-        wysokosc *= 80;
-        if (wysokosc <= 5000) booster.drag = 1f;
-        else if ((wysokosc > 5000) && (wysokosc <= 10000)) booster.drag = 0.9f;
-        else if ((wysokosc > 10000) && (wysokosc <= 15000)) booster.drag = 0.8f;
-        else if ((wysokosc > 15000) && (wysokosc <= 20000)) booster.drag = 0.7f;
-        else if ((wysokosc > 20000) && (wysokosc <= 25000)) booster.drag = 0.5f;
-        else if ((wysokosc > 25000) && (wysokosc <= 30000)) booster.drag = 0.3f;
-        else if ((wysokosc > 30000) && (wysokosc <= 40000)) booster.drag = 0.2f;
-        else if ((wysokosc > 40000) && (wysokosc <= 50000)) booster.drag = 0.01f;
-        else if ((wysokosc > 50000) && (wysokosc <= 400000)) booster.drag = 0.00005f;
-        else if (wysokosc > 400000) booster.drag = 0f;
-    }
 
 
     void TaskOnClick()
@@ -148,12 +160,36 @@ public class FalconBoosterSrodkowy : MonoBehaviour
         ciag = _ciag.value;
         ilosc = _ilosc.value;
         slider.maxValue = ilosc;
-        if (ilosc >= 150) { masa = ilosc / 300 ; }
-        else if ((ilosc < 150) && (ilosc > 50)) { masa = ilosc / 50; }
-        else if (ilosc <= 50) { masa = 1000 + ilosc; }
-        dlugosc_do_masy = ilosc; // ta zmienna to duplikat ilosc poniewaz w masie jak dziele przez Time.deltaTime to ona cały czas maleje i kwiatki wychodzą
+
+        if (ilosc >= 350) { masa = 3f; }
+        else if ((ilosc < 350) && (ilosc > 300)) { masa = 1.9f; }
+        else if ((ilosc < 300) && (ilosc > 250)) { masa =  1.8f; }
+        else if ((ilosc < 250) && (ilosc > 200)) { masa =  1.7f; }
+        else if ((ilosc < 200) && (ilosc > 150)) { masa =  1.6f; }
+        else if ((ilosc < 150) && (ilosc > 100)) { masa =  1.5f; }
+        else if ((ilosc < 250) && (ilosc > 200)) { masa = 1.4f; }
+        else if ((ilosc < 200) && (ilosc > 150)) { masa = 1.3f; }
+        else if ((ilosc < 150) && (ilosc > 100)) { masa =  1.2f; }
+        else if ((ilosc < 100) && (ilosc > 50)) { masa = 1.1f; }
+        else if (ilosc <= 50) { masa = 1f; }
+        else if (ilosc == 0) { masa = .8f; }
+        else Debug.Log("Blad wywalilo w FalconBoosterSrodkowy w masie");
+
+       // dlugosc_do_masy = ilosc; // ta zmienna to duplikat zmiennej ilosc poniewaz w masie jak dziele przez Time.deltaTime to ona cały czas maleje i pod koniec zaczyna za szybko schodzic masa
     }
 
-  
+   
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Planeta") //Pieknie dziala :D
+        {
+            
+           if(booster != null)
+            {
+                Instantiate(explosionEffect, transform.position, transform.rotation);
+                Destroy(booster.gameObject);
+            }
+        }
+    }
 }

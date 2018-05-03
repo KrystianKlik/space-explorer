@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 2aadba073740fb540be151d3d1e43826
+timeCreated: 1523883277
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - ziemia: {instanceID: 0}
+  - rakieta: {instanceID: 0}
+  - explosionEffect: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

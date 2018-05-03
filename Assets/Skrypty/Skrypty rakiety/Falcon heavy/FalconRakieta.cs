@@ -3,17 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class FalconRakieta : MonoBehaviour {
 
-    public Text wyswietlwysokosc;
-    public Text wyswietlPredkosc;
+    public Slider sliderOgranicznik;
+    public Slider _ilosc;
+    public Slider slider;
+    public Button yourButton;
 
+    float ilosc;
+
+    public ConfigurableJoint CFJ;
     public Vector3 centrumMasy;
     public Rigidbody rb;
     public Rigidbody ziemia;
+    [SerializeField]
+
+    bool odczepione = false;
 
     public ParticleSystem PS;
-    public ParticleSystem tarcie;
+
 
     [SerializeField]
     private float thrust = 100f;
@@ -26,6 +35,9 @@ public class FalconRakieta : MonoBehaviour {
     private float predkosc;
 
 
+    [SerializeField]
+    private float ogranicznik;
+
 
     //bool zrobione = true;
     //cwałująca Valkiria 
@@ -36,65 +48,70 @@ public class FalconRakieta : MonoBehaviour {
         
         rb.centerOfMass = centrumMasy;
         PS.Stop();
-        rb.drag = 0.1f;
-        tarcie.Stop();
+       
+       
     }
         
     void Update()
     {
         Sterowanie();
-        Wysokosc();
-        Tarcie();
+        Button btn = yourButton.GetComponent<Button>();
+        btn.onClick.AddListener(TaskOnClick);
+
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         Leci();
     }
 
     public void Leci()
     {
+      //  ilosc -= Time.deltaTime;
+     //   slider.value = ilosc;
 
-        if (Input.GetKey(KeyCode.X))
+        if (CFJ)
+        { odczepione = true; }
+           
+       else if(odczepione)
         {
-            rb.AddRelativeForce(Vector3.forward * thrust * Time.deltaTime);
-              PS.Play();
-        }
-        else if (!(Input.GetButton("Jump")))
+            sliderOgranicznik.value = ogranicznik;
+
+            if (Input.GetKey(KeyCode.LeftShift) && (ogranicznik <= 1))
             {
-                PS.Stop();
+                ogranicznik += Time.deltaTime;
+                if (ogranicznik > 1)
+                    ogranicznik = 1;
+#pragma warning disable CS0618 // Type or member is obsolete
+                PS.startSpeed += ogranicznik/10;
+#pragma warning restore CS0618 // Type or member is obsolete
+
             }
-        
+
+            else if (Input.GetKey(KeyCode.LeftControl) && (ogranicznik >= 0))
+            {
+                ogranicznik -= Time.deltaTime;
+                if (ogranicznik < 0)
+                    ogranicznik = 0;
+#pragma warning disable CS0618 // Type or member is obsolete
+                PS.startSpeed -= ogranicznik/10;
+#pragma warning restore CS0618 // Type or member is obsolete
+
+            }
+
+            if (ogranicznik > 0)
+                {
+                    rb.AddRelativeForce(Vector3.forward * thrust * ogranicznik);
+                    PS.Play();
+                }
+                else if (ogranicznik <= 0)
+                {
+                    PS.Stop();
+                }
+        }
     }
 
-   public void Wysokosc()
-    {
-
-        //  wysokosc = Vector3.Distance(rb.position, ziemia.position);
-
-
-        wysokosc = Vector3.Distance(rb.transform.position, ziemia.transform.position) -29506  ;
-           wysokosc *= 80;
-       
-        if (wysokosc < 200) { predkosc = 0; }
-        else predkosc = rb.velocity.magnitude * 100;
-
-        if (wysokosc <= 5000) rb.drag = 1f;
-        else if ((wysokosc > 5000) && (wysokosc <= 10000)) rb.drag = 0.9f;
-        else if ((wysokosc > 10000) && (wysokosc <= 15000)) rb.drag = 0.8f;
-        else if ((wysokosc > 15000) && (wysokosc <= 20000)) rb.drag = 0.7f;
-        else if ((wysokosc > 20000) && (wysokosc <= 25000)) rb.drag = 0.5f;
-        else if ((wysokosc > 25000) && (wysokosc <= 30000)) rb.drag = 0.3f;
-        else if ((wysokosc > 30000) && (wysokosc <= 40000)) rb.drag = 0.2f;
-        else if ((wysokosc > 40000) && (wysokosc <= 50000)) rb.drag = 0.01f;
-        else if ((wysokosc > 50000) && (wysokosc <= 400000)) rb.drag = 0.00005f;
-        else if (wysokosc > 400000) rb.drag = 0f;
-
-        if (wysokosc < 10000) wyswietlwysokosc.text = "Wysokosc: " + Mathf.RoundToInt(wysokosc).ToString() + "m";
-       else wyswietlwysokosc.text = "Wysokosc: " + Mathf.RoundToInt(wysokosc/1000).ToString() + "km";
-        wyswietlPredkosc.text = "Predkosc: " + Mathf.RoundToInt(predkosc).ToString() + "km/h";
-    }
-
+  
     public void Sterowanie()
     {
         float r = Input.GetAxis("Obrot") * predkoscObrotu * Time.deltaTime;  //qe  obrot
@@ -103,14 +120,10 @@ public class FalconRakieta : MonoBehaviour {
         transform.Rotate(x, z, r);
     }
 
-    public void Tarcie()
+   void TaskOnClick()
     {
-        if ((wysokosc > 80000) && (wysokosc < 120000) && (predkosc > 2000))
-        {
-            tarcie.Play();
-        }
-        else
-            tarcie.Stop();
+        ilosc = _ilosc.value;
+        slider.maxValue = ilosc;
     }
 
 

@@ -13,8 +13,6 @@ public class Atmosfera : MonoBehaviour
     [SerializeField]
     private float progress = 0f;
 
-    
-
     public Rigidbody rb;
     public Rigidbody ziemia;
 
@@ -22,8 +20,6 @@ public class Atmosfera : MonoBehaviour
     {
         Atmo();
     }
-
-
 
     public void Atmo()
     {
@@ -42,8 +38,7 @@ public class Atmosfera : MonoBehaviour
         else if ((wysokosc > 50000) && (wysokosc <= 400000)) { progress = 2f; slider.value = progress; }
         else if (wysokosc > 400000) { progress = 1f; slider.value = progress; } //exosphere
 
-         
-      
+  
     }
    
 }
