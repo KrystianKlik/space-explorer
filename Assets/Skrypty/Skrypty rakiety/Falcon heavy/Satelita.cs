@@ -28,7 +28,7 @@ public class Satelita : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Wysokosc();
-        odczepienieSatelity();
+        OdczepienieSatelity();
 
     }
 
@@ -43,24 +43,30 @@ public class Satelita : MonoBehaviour {
         if (wysokosc < 200) { predkosc = 0; }
         else predkosc = rb.velocity.magnitude * 150;
 
+        //Rigidbody rbToAttract = objToAttract.rb;
+        //Vector3 direction = rb.position - rbToAttract.position;
+        float distance = direction.magnitude;
 
-        //   if (wysokosc < 10000) wyswietlwysokosc.text = "Wysokosc: " + Mathf.RoundToInt(wysokosc).ToString() + "m";
-        wyswietlwysokosc.text = "Wysokosc: " + Mathf.RoundToInt(wysokosc).ToString() + "m";
-        //   else wyswietlwysokosc.text = "Wysokosc: " + Mathf.RoundToInt(wysokosc / 1000).ToString() + "km";
-        wyswietlPredkosc.text = "Predkosc: " + Mathf.RoundToInt(predkosc).ToString() + "km/h";
+        if (wysokosc < 10000) wyswietlwysokosc.text = "Wysokosc: " + Mathf.RoundToInt(wysokosc).ToString() + "m";
+           else wyswietlwysokosc.text = "Wysokosc: " + Mathf.RoundToInt(wysokosc / 1000).ToString() + "km";
+           wyswietlPredkosc.text = "Predkosc: " + Mathf.RoundToInt(predkosc).ToString() + "km/h";
     }
 
-     void odczepienieSatelity()
+     void OdczepienieSatelity()
      {
-    
-        
-            if (Input.GetKeyDown(KeyCode.L) && OwiewkaLewaCFJ == null && OwiewkaPrawaCFJ == null)
+            if (Input.GetKeyDown(KeyCode.L) && OwiewkaLewaCFJ == null && OwiewkaPrawaCFJ == null && odczepione)
             {
                 CFJ.breakForce = 0;
-              odczepione = false;
-            }
-            
-        
-     }
+                odczepione = false;
+          //  rb.AddRelativeForce(0, 0, 5f, ForceMode.Impulse);
+        }
+           //if (!odczepione)
+           //{
+           // float Timer = 2f;
+           // Timer -= Time.time;
+           // if (Timer <= 0)
+                
+           // }
+    }
 
 }

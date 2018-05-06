@@ -93,7 +93,6 @@
     <Compile Include="Assets\EffectExamples\Shared\Scripts\ParticleCollision.cs" />
     <Compile Include="Assets\EffectExamples\Shared\Scripts\ParticleExamples.cs" />
     <Compile Include="Assets\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
-    <Compile Include="Assets\Satelita.cs" />
     <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\Attractor.cs" />
     <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\Ellipse.cs" />
     <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\EllipseRenderer.cs" />
@@ -118,9 +117,11 @@
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Falcon heavy\FalconBoostery.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Falcon heavy\FalconRakieta.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Falcon heavy\Owiewka.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty rakiety\Falcon heavy\Satelita.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Falcon heavy\UI falcon\PoczatekGry.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Falcon heavy\UI falcon\wskaznikPaliwa.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Rakieta.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty rakiety\Sterowanie.cs" />
     <Compile Include="Assets\Skrypty\Sktypty testowe\odczepianieRakiet.cs" />
     <Compile Include="Assets\Skrypty\Sktypty testowe\OdczepienieOwiewek.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />

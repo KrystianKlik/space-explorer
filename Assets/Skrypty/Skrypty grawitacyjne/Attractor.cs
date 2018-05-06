@@ -43,15 +43,12 @@ public class Attractor : MonoBehaviour
         float distance = direction.magnitude;
     
 
-        if (distance == 0f)
+        if (distance <= 1000f)
         {
             return;
         }
    
-        //else if(gos != null)// w sumie tylko ten warunek nie jest mój reszta to brackeys
-        //{//
-        //    return;//
-        //}//
+      
 
         float forceMagnitude = G * (rb.mass * rbToAttract.mass) / Mathf.Pow(distance, 2);
         Vector3 force = direction.normalized * forceMagnitude;

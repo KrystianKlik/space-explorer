@@ -14,7 +14,7 @@ public class FalconRakieta : MonoBehaviour {
     float ilosc;
 
     public ConfigurableJoint CFJ;
-    public Vector3 centrumMasy;
+    public float centrumMasy = .55f;
     public Rigidbody rb;
     public Rigidbody ziemia;
     [SerializeField]
@@ -22,18 +22,15 @@ public class FalconRakieta : MonoBehaviour {
     bool odczepione = false;
 
     public ParticleSystem PS;
+    public float thrust;
 
-
-    [SerializeField]
-    private float thrust = 100f;
-    [SerializeField]
-    private float predkoscObrotu = 20f;
 
     //public FixedJoint FJ; 
 
     private float wysokosc;
     private float predkosc;
 
+    float bodyLenght;
 
     [SerializeField]
     private float ogranicznik;
@@ -45,8 +42,8 @@ public class FalconRakieta : MonoBehaviour {
 
     void Start()
     {
-        
-        rb.centerOfMass = centrumMasy;
+      
+       
         PS.Stop();
        
        
@@ -54,10 +51,13 @@ public class FalconRakieta : MonoBehaviour {
         
     void Update()
     {
-        Sterowanie();
+       
         Button btn = yourButton.GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);
-
+        //if(Input.GetKey(KeyCode.L))
+        //{
+        //    rb.AddRelativeForce(0, 0, -5f, ForceMode.Impulse);
+        //}
     }
 
     void FixedUpdate()
@@ -77,24 +77,27 @@ public class FalconRakieta : MonoBehaviour {
         {
             sliderOgranicznik.value = ogranicznik;
 
-            if (Input.GetKey(KeyCode.LeftShift) && (ogranicznik <= 1))
+            if (Input.GetKey(KeyCode.LeftShift) && (ogranicznik < 1))
             {
-                ogranicznik += Time.deltaTime;
+               
                 if (ogranicznik > 1)
                     ogranicznik = 1;
+                ogranicznik += Time.deltaTime;
 #pragma warning disable CS0618 // Type or member is obsolete
-                PS.startSpeed += ogranicznik/10;
+                if (PS.startSpeed > 4) PS.startSpeed = 4f;
+                PS.startSpeed += (ogranicznik * Time.deltaTime) * 7;
 #pragma warning restore CS0618 // Type or member is obsolete
 
             }
 
-            else if (Input.GetKey(KeyCode.LeftControl) && (ogranicznik >= 0))
+            else if (Input.GetKey(KeyCode.LeftControl) && (ogranicznik > 0))
             {
                 ogranicznik -= Time.deltaTime;
                 if (ogranicznik < 0)
                     ogranicznik = 0;
+                if (PS.startSpeed < 0.2f) PS.startSpeed = 0.2f;
 #pragma warning disable CS0618 // Type or member is obsolete
-                PS.startSpeed -= ogranicznik/10;
+                PS.startSpeed -= (ogranicznik * Time.deltaTime) * 7;
 #pragma warning restore CS0618 // Type or member is obsolete
 
             }
@@ -112,18 +115,13 @@ public class FalconRakieta : MonoBehaviour {
     }
 
   
-    public void Sterowanie()
-    {
-        float r = Input.GetAxis("Obrot") * predkoscObrotu * Time.deltaTime;  //qe  obrot
-        float z = Input.GetAxis("Horizontal") * predkoscObrotu * Time.deltaTime;//ad lewo prawo
-        float x = Input.GetAxis("Vertical") * predkoscObrotu * Time.deltaTime;//ws gora dol
-        transform.Rotate(x, z, r);
-    }
+
 
    void TaskOnClick()
     {
         ilosc = _ilosc.value;
         slider.maxValue = ilosc;
+        rb.centerOfMass = new Vector3(0f, 0f, -50f * ogranicznik);
     }
 
 

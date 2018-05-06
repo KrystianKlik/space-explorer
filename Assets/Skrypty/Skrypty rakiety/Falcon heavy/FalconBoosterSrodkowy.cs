@@ -9,7 +9,7 @@ public class FalconBoosterSrodkowy : MonoBehaviour
 
     public Text masaCzesci;
 
-    public Vector3 centrumMasy;
+    public float centrumMasy;
 
     public Slider slider;
     public Slider _ilosc;
@@ -24,19 +24,19 @@ public class FalconBoosterSrodkowy : MonoBehaviour
 
     //public FixedJoint FJ;
     public ConfigurableJoint CFJ;
+    public ConfigurableJoint CFJBocznychBoosterow;
 
     public Button yourButton;
 
     public float mass = 1.5f;
     float masa;
-     float dlugosc_do_masy;
+    float dlugosc_do_masy;
 
     bool paliwo;
     bool leci = false;
+    bool odczepione = true;
 
-    public bool odczepione = true;
-
-    public GameObject explosionEffect;
+ 
 
 
     public ParticleSystem PS;
@@ -46,7 +46,7 @@ public class FalconBoosterSrodkowy : MonoBehaviour
     void Start()
     {
 
-        booster.centerOfMass = centrumMasy;
+        centrumMasy = 200f;
         booster.isKinematic = true;
         odczepione = true;
         leci = false;
@@ -54,20 +54,23 @@ public class FalconBoosterSrodkowy : MonoBehaviour
         paliwo = false;
         masa = mass;
         PS.Stop();
+       
 
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        booster.centerOfMass = new Vector3(0f, 0f, -centrumMasy);
+      
         Odczepienie();
-
+      
         Button btn = yourButton.GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);
 
         masaCzesci.text = "Glowny Booster: " + Mathf.RoundToInt(masa*1000).ToString() + "kg";
-    
+        booster.centerOfMass = new Vector3(0f, 0f, -centrumMasy);
+        
     }   
 
      void FixedUpdate()
@@ -77,13 +80,14 @@ public class FalconBoosterSrodkowy : MonoBehaviour
 
     void Ogien()
     {
-        if (Input.GetButton("Jump") && (odczepione))
+       
+        if (Input.GetButton("Jump") && odczepione )
         {
             booster.isKinematic = false;
             paliwo = true;
         }
 
-        if (paliwo)
+        if (paliwo && odczepione)
         {
             if (ilosc > 0)
             {
@@ -91,6 +95,7 @@ public class FalconBoosterSrodkowy : MonoBehaviour
                 ilosc -= Time.deltaTime;
                 slider.value = ilosc;
                 PS.Play();
+                
             }
 
             else if (ilosc <= 0)
@@ -104,51 +109,19 @@ public class FalconBoosterSrodkowy : MonoBehaviour
     }
   
 
-    //private void Ogien()
-    //{
-       
-
-    //    if (Input.GetButton("Jump") && (odczepione) && (paliwo))
-    //    {
-    //        booster.isKinematic = false;
-    //        booster.AddRelativeForce(Vector3.forward * ciag * Time.deltaTime);
-
-    //        ilosc -= Time.deltaTime;
-    //        slider.value = ilosc;
-
-    //        if ((ilosc <= 0f) || (ciag == 0))
-    //        {
-    //            paliwo = false;
-    //            PS.Stop(); 
-    //        }
-    //        else PS.Play();
-
-    //        if ((odczepione) && (masa >= .3))
-    //        {
-
-    //            //masa -= Time.deltaTime * 100 / (ciag * dlugosc_do_masy);
-    //            booster.mass = masa;
-    //        }
-    //        else mass = .2f;
-
-         
-
-    //    }
-    //    else
-    //    {
-    //        PS.Stop();
-    //    }
-       
-    //}
-
+   
 
 
     void Odczepienie() //dzieki temu prostemu kodowi boostery sie odczepiaja
     {
-        if (Input.GetKey(KeyCode.J) && (odczepione))
+        if (Input.GetKey(KeyCode.K) && (odczepione))// && CFJBocznychBoosterow == null)
         {
+            
             CFJ.breakForce = 0;
             odczepione = false;
+            PS.Stop();
+          //  booster.AddRelativeForce(Vector3.forward * 200f);
+            booster.constraints = RigidbodyConstraints.None;
         }
     }
 
@@ -160,6 +133,8 @@ public class FalconBoosterSrodkowy : MonoBehaviour
         ciag = _ciag.value;
         ilosc = _ilosc.value;
         slider.maxValue = ilosc;
+
+  
 
         if (ilosc >= 350) { masa = 3f; }
         else if ((ilosc < 350) && (ilosc > 300)) { masa = 1.9f; }
@@ -173,23 +148,12 @@ public class FalconBoosterSrodkowy : MonoBehaviour
         else if ((ilosc < 100) && (ilosc > 50)) { masa = 1.1f; }
         else if (ilosc <= 50) { masa = 1f; }
         else if (ilosc == 0) { masa = .8f; }
-        else Debug.Log("Blad wywalilo w FalconBoosterSrodkowy w masie");
+      //  else Debug.Log("Blad wywalilo w FalconBoosterSrodkowy w masie");
 
        // dlugosc_do_masy = ilosc; // ta zmienna to duplikat zmiennej ilosc poniewaz w masie jak dziele przez Time.deltaTime to ona cały czas maleje i pod koniec zaczyna za szybko schodzic masa
     }
 
    
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Planeta") //Pieknie dziala :D
-        {
-            
-           if(booster != null)
-            {
-                Instantiate(explosionEffect, transform.position, transform.rotation);
-                Destroy(booster.gameObject);
-            }
-        }
-    }
+
 }

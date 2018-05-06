@@ -10,7 +10,9 @@ public class Drag : MonoBehaviour {
     public Rigidbody rb;
     public Rigidbody ziemia;
 
-    public ParticleSystem tarcie;   
+    public ParticleSystem tarcie;
+
+    public GameObject explosionEffect;
 
     // Use this for initialization
     void Start () {
@@ -20,19 +22,19 @@ public class Drag : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        wysokosc = Vector3.Distance(rb.transform.position, ziemia.transform.position);
-        wysokosc *= 150;
+        wysokosc = Vector3.Distance(rb.transform.position, ziemia.transform.position) * 150;
+        wysokosc -= 3818608;
         predkosc = rb.velocity.magnitude * 150;
 
             
-        atmosfera();
+        Atmosfera();
         Tarcie();
 
     }
 
-    public void atmosfera()
+    public void Atmosfera()
     {
-        if (wysokosc <= 5000) rb.drag = .4f;
+        if (wysokosc <= 5000) rb.drag = .2f;
         else if ((wysokosc > 5000) && (wysokosc <= 10000)) rb.drag = .2f;
         else if ((wysokosc > 10000) && (wysokosc <= 15000)) rb.drag = .1f;
         else if ((wysokosc > 15000) && (wysokosc <= 20000)) rb.drag = .08f;
@@ -51,6 +53,12 @@ public class Drag : MonoBehaviour {
         if ((wysokosc > 70000) && (wysokosc < 130000) && (predkosc > 5000))
         {
             tarcie.Play();
+            if(predkosc > 500000)
+            {
+                Instantiate(explosionEffect, transform.position, transform.rotation);
+                Destroy(rb.gameObject);
+            }
+
         }
         else
             tarcie.Stop();

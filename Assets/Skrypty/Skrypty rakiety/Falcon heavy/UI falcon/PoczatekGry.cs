@@ -15,7 +15,7 @@ public class PoczatekGry : MonoBehaviour {
 
     void TaskOnClick()
     {
-        Debug.Log("You have clicked the button!");
+       // Debug.Log("You have clicked the button!");
         Time.timeScale = 1f;
     }
 }

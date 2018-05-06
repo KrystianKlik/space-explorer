@@ -25,13 +25,14 @@ public class Owiewka : MonoBehaviour {
 
     void OdczepienieOwiewek()
     {
-        if (Input.GetKey(KeyCode.U) && (!odpadla))
+        if (Input.GetKey(KeyCode.L) && (!odpadla))
         {
           //  FJOwiewka.breakForce = 0;
            // owiewka.velocity= new Vector3(wystrzal, 0, 0); //owiekwa lewa na plusie prawa na minusie
             odpadla = true;
               CFJ.breakForce = 0;
-}
+}           owiewka.AddRelativeForce(wystrzal, 0, 0);
+        owiewka.constraints = RigidbodyConstraints.None;
     }
 
 

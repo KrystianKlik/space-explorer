@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class FalconBoostery : MonoBehaviour
 {
-    public Vector3 centrumMasy;
+    public float centrumMasy;
 
     bool hasExploded = false;
-
+    bool odczepionyPrzezAwarie = false;
+    public bool zepsuty = false; //to zmienna do misji 2
+    bool wcisnietoSpacje = false;
     public float mocOdczepienia;
 
     public Button yourButton;
@@ -20,6 +22,8 @@ public class FalconBoostery : MonoBehaviour
     float ilosc;
     float wysokosc;
     float predkosc;
+
+    float time;
 
     public Rigidbody ziemia;
     public Rigidbody booster;
@@ -45,16 +49,20 @@ public class FalconBoostery : MonoBehaviour
     void Start()
     {
 
-        booster.centerOfMass = centrumMasy;
+        centrumMasy = 20f;
         odczepione = true;
         PS.Stop();
         paliwo = false;
         booster.isKinematic = true;
         masa = mass;
-
         
+
     }
 
+     void Awake()
+    {
+        time = Random.Range(50000, 150000);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -63,23 +71,24 @@ public class FalconBoostery : MonoBehaviour
 
         Button btn = yourButton.GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);
+        booster.centerOfMass = new Vector3(0f, 0f, -centrumMasy);
 
-        
-       
+        if (time <= 0) { booster.constraints = RigidbodyConstraints.None; }
 
     }
 
     void FixedUpdate()
     {
         Ogien();
+        Awaria();
     }
 
     public void Ogien()
     {
-
+        
         if (Input.GetButton("Jump") && odczepione)
         {
-            if (Input.GetKey(KeyCode.J)) paliwo = false; else paliwo = true;
+            if (Input.GetKey(KeyCode.J) && (!odczepionyPrzezAwarie)) paliwo = false; else paliwo = true;
             booster.isKinematic = false;
         }
 
@@ -107,19 +116,34 @@ public class FalconBoostery : MonoBehaviour
     void Odczepienie() //dzieki temu prostemu kodowi boostery sie odczepiaja
     {
 
-        if (Input.GetKey(KeyCode.K) && (odczepione))
+        if ((Input.GetKey(KeyCode.J) || Input.GetKey(KeyCode.K)) && odczepione)
         {
-          
-             CFJ.breakForce = 0;
-            if(CFJ.breakForce == 0)
-            {
-               // booster.velocity = new Vector3(0, -mocOdczepienia, 0);
-                odczepione = false;
-            }
-          
+
+            if (!odczepionyPrzezAwarie) { CFJ.breakForce = 0; PS.Stop(); } 
+            booster.constraints = RigidbodyConstraints.None;
+            odczepione = false;
         }
     }
 
+
+    void Awaria()
+    {if (Input.GetKeyDown(KeyCode.Space)) wcisnietoSpacje = true;
+        if (zepsuty && wcisnietoSpacje)
+        {
+            
+            time -= Time.time;
+            Debug.Log(time);
+            if (time <= 0 && odczepione && CFJ != null)
+            {
+                odczepionyPrzezAwarie = true;
+                CFJ.breakForce = 0;
+              //  odczepione = false;
+                booster.constraints = RigidbodyConstraints.None;
+                PS.Stop();
+                booster.AddRelativeForce(20f, 0, 0);
+            }
+        }
+    }
 
 
     void TaskOnClick()
@@ -140,9 +164,11 @@ public class FalconBoostery : MonoBehaviour
         else if ((ilosc < 100) && (ilosc > 50)) { masa = 1.1f; }
         else if (ilosc <= 50) { masa = 1f; }
         else if (ilosc == 0) { masa = .8f; }
-        else Debug.Log("Blad wywalilo w FalconBoosterSrodkowy w masie");
+        //else Debug.Log("Blad wywalilo w FalconBoosterSrodkowy w masie");
 
-        dlugosc_do_masy = ilosc; // ta zmienna to duplikat ilosc poniewaz w masie jak dziele przez Time.deltaTime to ona cały czas maleje i kwiatki wychodzą
+    
+
+      //  dlugosc_do_masy = ilosc; // ta zmienna to duplikat ilosc poniewaz w masie jak dziele przez Time.deltaTime to ona cały czas maleje i kwiatki wychodzą
     }
 
   

@@ -6,7 +6,7 @@ public class Wybuch : MonoBehaviour
 {
     public GameObject explosionEffect;
     public Rigidbody rb;
-    public Rigidbody rakieta;
+   
     float predkosc;
 
      void Update()

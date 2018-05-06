@@ -31307,7 +31307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centrumMasy: NaN
-  zepsuty: 0
+  zepsuty: 1
   mocOdczepienia: 0
   yourButton: {fileID: 2081369914}
   slider: {fileID: 1853948106}
