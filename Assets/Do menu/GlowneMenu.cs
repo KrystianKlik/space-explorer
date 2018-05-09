@@ -20,10 +20,17 @@ public class GlowneMenu : MonoBehaviour {
     else if(numerPoziomu == 2)
         {
 #pragma warning disable CS0618 // Type or member is obsolete
-            Application.LoadLevel("Gra glowna");
+            Application.LoadLevel("Ksiezyc");
 #pragma warning restore CS0618 // Type or member is obsolete
         }
-        //  SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1 );
+
+        else if (numerPoziomu == 3)
+        {
+#pragma warning disable CS0618 // Type or member is obsolete
+            Application.LoadLevel("Awaria");
+#pragma warning restore CS0618 // Type or member is obsolete
+        }
+        
     }
 
 		public void QuitGame()

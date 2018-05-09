@@ -46,7 +46,7 @@ public class FalconBoosterSrodkowy : MonoBehaviour
     void Start()
     {
 
-        centrumMasy = 200f;
+        centrumMasy = 10f;
         booster.isKinematic = true;
         odczepione = true;
         leci = false;
@@ -68,7 +68,7 @@ public class FalconBoosterSrodkowy : MonoBehaviour
         Button btn = yourButton.GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);
 
-        masaCzesci.text = "Glowny Booster: " + Mathf.RoundToInt(masa*1000).ToString() + "kg";
+       
         booster.centerOfMass = new Vector3(0f, 0f, -centrumMasy);
         
     }   

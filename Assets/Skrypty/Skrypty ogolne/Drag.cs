@@ -34,7 +34,7 @@ public class Drag : MonoBehaviour {
 
     public void Atmosfera()
     {
-        if (wysokosc <= 5000) rb.drag = .2f;
+        if (wysokosc <= 5000) rb.drag = .3f;
         else if ((wysokosc > 5000) && (wysokosc <= 10000)) rb.drag = .2f;
         else if ((wysokosc > 10000) && (wysokosc <= 15000)) rb.drag = .1f;
         else if ((wysokosc > 15000) && (wysokosc <= 20000)) rb.drag = .08f;

@@ -10,11 +10,11 @@ public class FalconRakieta : MonoBehaviour {
     public Slider _ilosc;
     public Slider slider;
     public Button yourButton;
-
+    
     float ilosc;
 
     public ConfigurableJoint CFJ;
-    public float centrumMasy = .55f;
+  
     public Rigidbody rb;
     public Rigidbody ziemia;
     [SerializeField]
@@ -121,7 +121,7 @@ public class FalconRakieta : MonoBehaviour {
     {
         ilosc = _ilosc.value;
         slider.maxValue = ilosc;
-        rb.centerOfMass = new Vector3(0f, 0f, -50f * ogranicznik);
+        rb.centerOfMass = new Vector3(0f, 0f, -60f);
     }
 
 

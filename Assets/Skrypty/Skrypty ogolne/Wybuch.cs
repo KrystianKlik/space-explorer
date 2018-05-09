@@ -20,7 +20,7 @@ public class Wybuch : MonoBehaviour
         if (collision.gameObject.tag == "Planeta") //Pieknie dziala :D
         {
 
-            if (rb != null && predkosc > 500)
+            if (rb != null && predkosc > 100)
             {
                 Instantiate(explosionEffect, transform.position, transform.rotation);
                 Destroy(rb.gameObject);

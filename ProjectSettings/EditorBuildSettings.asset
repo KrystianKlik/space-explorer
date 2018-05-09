@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/Poziomy/Menu.unity
     guid: 7eac9cf6fa44fa743b0bd473322355bf
   - enabled: 1
-    path: Assets/Poziomy/Gra glowna.unity
-    guid: 2e4ecabbb9107d94c90d1290de3adbc6
-  - enabled: 1
     path: Assets/Poziomy/SpaceX.unity
     guid: 8b1baf7bdf836ff4a8e59e21722fdd0b
+  - enabled: 1
+    path: Assets/Poziomy/Ksiezyc.unity
+    guid: 7d1b93e2ea46d5247bbbdc9083b5d2c3
+  - enabled: 1
+    path: Assets/Poziomy/Awaria.unity
+    guid: 539cbefdf2b31ec46a88205708fbc34e

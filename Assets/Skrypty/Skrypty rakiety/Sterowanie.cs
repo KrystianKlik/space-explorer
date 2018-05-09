@@ -16,9 +16,11 @@ public class Sterowanie : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (CFJ != null)
-        {
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
+        
+
+       if (CFJ != null)
+       {
+            rb.constraints = RigidbodyConstraints.None;
             float r = Input.GetAxis("Obrot") * predkoscObrotu * Time.deltaTime;  //qe  obrot
             float z = Input.GetAxis("Horizontal") * predkoscObrotu * Time.deltaTime;//ad lewo prawo
             float x = Input.GetAxis("Vertical") * predkoscObrotu * Time.deltaTime;//ws gora dol
