@@ -14,16 +14,21 @@ public class Procenty : MonoBehaviour {
 
     public void textUpdatePaliwoGlownegoBoostera(float value)
     {
-        percentageText.text = Mathf.RoundToInt(value / 2.5f) + "%";
+        percentageText.text = Mathf.RoundToInt(value / 2.17f) + "%";
     }
 
     public void textUpdatePaliwoBocznychBoosterow(float value)
     {
-        percentageText.text = Mathf.RoundToInt(value / 2) + "%";
+        percentageText.text = Mathf.RoundToInt(value / 1.48f) + "%";
     }
     public void textUpdateDlaCiagu(float value)
     {
-        percentageText.text = Mathf.RoundToInt(value / 4) + "%";
+        percentageText.text = Mathf.RoundToInt(value / 3.47f) + "%";
+    }
+
+    public void textUpdateFuelForMainBooster(float value)
+    {
+        percentageText.text = Mathf.RoundToInt(value / 2.86f) + "%";
     }
 
     public void textUpdateDlaOwieki(float value)
@@ -33,6 +38,6 @@ public class Procenty : MonoBehaviour {
 
     public void textUpdatedlaPaliwaSecondStage(float value)
     {
-        percentageText.text = Mathf.RoundToInt(value) + "%";
+        percentageText.text = Mathf.RoundToInt(value / 1.3f) + "%";
     }
 }

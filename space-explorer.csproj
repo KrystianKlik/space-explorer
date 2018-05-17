@@ -101,6 +101,9 @@
     <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\ObrotStatku.cs" />
     <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\OrbitMotion.cs" />
     <Compile Include="Assets\Skrypty\Skrypty grawitacyjne\PlanarGravityScript.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty ogolne\Audio\AudioScript.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty ogolne\Audio\AudioScriptSecondStage.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty ogolne\Audio\LanderAudio.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Czas.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Drag.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Kamery\CameraCollision.cs" />
@@ -109,8 +112,10 @@
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Kamery\PrzelaczanieKamer.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Przedmioty.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\UI\Atmosfera.cs" />
-    <Compile Include="Assets\Skrypty\Skrypty ogolne\UI\HelpMenu.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty ogolne\UI\Help.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty ogolne\UI\HelpMenuText.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\UI\PauseMenu.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty ogolne\UI\PojawianieSieOgranicnzika.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\UI\Procenty.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Wybuch.cs" />
     <Compile Include="Assets\Skrypty\Skrypty rakiety\Booster.cs" />
@@ -165,6 +170,7 @@
     <None Include="Assets\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
     <None Include="Assets\Readme.txt" />
     <None Include="Assets\Shaders\ItemGlow.shader" />
+    <None Include="Assets\Sounds\credit.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\LiberationSans - OFL.txt" />

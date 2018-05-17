@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 public class FalconBoostery : MonoBehaviour
 {
-    public float centrumMasy;
+    public GameObject showEndOfFuel;
+
+
 
     bool hasExploded = false;
     bool odczepionyPrzezAwarie = false;
@@ -22,15 +24,14 @@ public class FalconBoostery : MonoBehaviour
     float wysokosc;
     float predkosc;
 
-    float time;
+    float timeForFailure;
 
     public Rigidbody ziemia;
     public Rigidbody booster;
 
     // public FixedJoint FJ;
     public ConfigurableJoint CFJ;
-
-     float dlugosc_do_masy;
+    
 
     public float mass = 1f;
     float masa;
@@ -38,6 +39,7 @@ public class FalconBoostery : MonoBehaviour
     public bool odczepione = true;
     bool paliwo;
 
+    bool text = false;
    // public GameObject explosionEffect;
    
     public ParticleSystem PS;
@@ -47,40 +49,40 @@ public class FalconBoostery : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+      //  booster.centerOfMass = new Vector3(0f, 0f, -0.1f);
 
-        centrumMasy = 10f;
         odczepione = true;
         PS.Stop();
         paliwo = false;
-        booster.isKinematic = true;
+       // booster.isKinematic = true;
         masa = mass;
-        time = Random.Range(50000, 100000);
-        Debug.Log(time);
-
+        timeForFailure = Random.Range(20000, 200000);
+        // Debug.Log(time);
+  
     }
 
-     void Awake()
-    {
-       
-    }
+  
     // Update is called once per frame
     void Update()
     {
         Odczepienie();
-     
+
+        Masa();
+
+
 
         Button btn = yourButton.GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);
-        booster.centerOfMass = new Vector3(0f, 0f, -centrumMasy);
+  
+        Awaria();
 
-        if (time <= 0) { booster.constraints = RigidbodyConstraints.None; }
 
     }
 
     void FixedUpdate()
     {
         Ogien();
-        Awaria();
+       
     }
 
     public void Ogien()
@@ -96,21 +98,35 @@ public class FalconBoostery : MonoBehaviour
         {
             if (ilosc > 0)
             {
+               
                 booster.AddRelativeForce(Vector3.forward * ciag * Time.deltaTime);
                 ilosc -= Time.deltaTime;
                 slider.value = ilosc;
                 PS.Play();
             }
 
-            else if (ilosc <= 0)
+            else if (ilosc <= 0 && !text)
             {
                 PS.Stop();
-                Debug.Log("Skonczylo sie paliwo w lewym lub prawym boosterze");
+                showEndOfFuel.SetActive(true);
+                StartCoroutine(TextDelay(10));
+                text = true;
+            }
+            else if (Input.GetKey(KeyCode.J) && ilosc <= 0)
+            {
+                showEndOfFuel.SetActive(false);
             }
         }
-     
-     
+      
 
+
+    }
+
+
+    IEnumerator TextDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        showEndOfFuel.SetActive(false);
     }
 
     void Odczepienie() //dzieki temu prostemu kodowi boostery sie odczepiaja
@@ -119,29 +135,43 @@ public class FalconBoostery : MonoBehaviour
         if ((Input.GetKey(KeyCode.J) || Input.GetKey(KeyCode.K)) && odczepione)
         {
 
-            if (!odczepionyPrzezAwarie) { CFJ.breakForce = 0; PS.Stop(); } 
-            booster.constraints = RigidbodyConstraints.None;
+            if (!odczepionyPrzezAwarie) { CFJ.breakForce = 0; PS.Stop(); }
             odczepione = false;
+            booster.constraints = RigidbodyConstraints.None;
+          
+         
         }
     }
 
 
     void Awaria()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) wcisnietoSpacje = true;
-        if (zepsuty && wcisnietoSpacje)
+        
+        if (zepsuty && paliwo)
         {
-            time -= Time.time;
-            Debug.Log(time);
-            if (time <= 0 && odczepione && CFJ != null)
+            timeForFailure -= Time.deltaTime;
+                Debug.Log(timeForFailure);    
+            
+
+            if ((timeForFailure <= 0 || ilosc <20) && odczepione && CFJ != null)
             {
                 odczepionyPrzezAwarie = true;
                 CFJ.breakForce = 0;
               //  odczepione = false;
                 booster.constraints = RigidbodyConstraints.None;
                 PS.Stop();
-                booster.AddRelativeForce(20f, 0, 0);
+
             }
+            if (ilosc > 0 && !odczepione)
+            {
+
+                booster.AddRelativeForce(Vector3.forward * ciag * Time.deltaTime);
+                ilosc -= Time.deltaTime;
+                slider.value = ilosc;
+                PS.Play();
+            }
+
+            
         }
     }
 
@@ -151,25 +181,24 @@ public class FalconBoostery : MonoBehaviour
         ciag = _ciag.value;
         ilosc = _ilosc.value;
         slider.maxValue = ilosc;
+        slider.value = ilosc;
+        var main = PS.main;
+        main.startSpeed = ciag / 20;
+    }
 
-        if (ilosc >= 350) { masa = 5f; }
-        else if ((ilosc < 350) && (ilosc > 300)) { masa =  4.8f; }
-        else if ((ilosc < 300) && (ilosc > 250)) { masa = 4.6f; }
-        else if ((ilosc < 250) && (ilosc > 200)) { masa = 4.4f; }
-        else if ((ilosc < 200) && (ilosc > 150)) { masa =  4.2f; }
-        else if ((ilosc < 150) && (ilosc > 100)) { masa =  4f; }
-        else if ((ilosc < 250) && (ilosc > 200)) { masa = 3.8f; }
+    void Masa()
+    {
+
+        if ((ilosc < 170) && (ilosc > 100)) { masa = 5f; }
+        else if ((ilosc < 250) && (ilosc > 200)) { masa = 4f; }
         else if ((ilosc < 200) && (ilosc > 150)) { masa = 3.6f; }
-        else if ((ilosc < 150) && (ilosc > 100)) { masa =  3.4f; }
+        else if ((ilosc < 150) && (ilosc > 100)) { masa = 3.4f; }
         else if ((ilosc < 100) && (ilosc > 50)) { masa = 3.2f; }
         else if (ilosc <= 50) { masa = 3f; }
         else if (ilosc == 0) { masa = 2.8f; }
         //else Debug.Log("Blad wywalilo w FalconBoosterSrodkowy w masie");
         booster.mass = masa;
-    
-
-      //  dlugosc_do_masy = ilosc; // ta zmienna to duplikat ilosc poniewaz w masie jak dziele przez Time.deltaTime to ona cały czas maleje i kwiatki wychodzą
-    }   
+    }
 
   
 

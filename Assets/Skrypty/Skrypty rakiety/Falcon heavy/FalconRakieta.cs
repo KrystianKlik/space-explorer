@@ -6,12 +6,15 @@ using UnityEngine.UI;
 
 public class FalconRakieta : MonoBehaviour {
 
+    public Toggle toggle;
+    
+    public GameObject showEndOfFuel;
     public Slider sliderOgranicznik;
     public Slider _ilosc;
     public Slider slider;
     public Button yourButton;
     
-    float ilosc;
+    public float ilosc;
 
     public ConfigurableJoint CFJ;
   
@@ -23,18 +26,21 @@ public class FalconRakieta : MonoBehaviour {
 
     public ParticleSystem PS;
     public float thrust;
+    public bool toogleIsOn;
 
-
-    //public FixedJoint FJ; 
+ 
 
     private float wysokosc;
     private float predkosc;
 
     float bodyLenght;
 
-    [SerializeField]
-    private float ogranicznik;
+    public float ogranicznik;
 
+    public float mass = 1f;
+    float masa;
+    bool text = false;
+    
 
     //bool zrobione = true;
     //cwałująca Valkiria 
@@ -45,8 +51,8 @@ public class FalconRakieta : MonoBehaviour {
       
        
         PS.Stop();
-       
-       
+        masa = mass;
+
     }
         
     void Update()
@@ -54,10 +60,7 @@ public class FalconRakieta : MonoBehaviour {
        
         Button btn = yourButton.GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);
-        //if(Input.GetKey(KeyCode.L))
-        //{
-        //    rb.AddRelativeForce(0, 0, -5f, ForceMode.Impulse);
-        //}
+        Masa();
     }
 
     void FixedUpdate()
@@ -67,14 +70,19 @@ public class FalconRakieta : MonoBehaviour {
 
     public void Leci()
     {
-      //  ilosc -= Time.deltaTime;
-     //   slider.value = ilosc;
+        
+    
 
         if (CFJ)
         { odczepione = true; }
            
-       else if(odczepione)
+       else if(odczepione && (ilosc >0))
         {
+            if (!toogleIsOn)
+            {
+                ilosc -= Time.deltaTime * ogranicznik / 2;
+            }
+            slider.value = ilosc;
             sliderOgranicznik.value = ogranicznik;
 
             if (Input.GetKey(KeyCode.LeftShift) && (ogranicznik < 1))
@@ -102,6 +110,8 @@ public class FalconRakieta : MonoBehaviour {
 
             }
 
+
+
             if (ogranicznik > 0)
                 {
                     rb.AddRelativeForce(Vector3.forward * thrust * ogranicznik);
@@ -112,18 +122,52 @@ public class FalconRakieta : MonoBehaviour {
                     PS.Stop();
                 }
         }
+
+        else if(ilosc <= 0 & !text)
+        {
+            ogranicznik = 0;
+            sliderOgranicznik.value = ogranicznik;
+            showEndOfFuel.SetActive(true);
+            StartCoroutine(TextDelay(10));
+            PS.Stop();
+            text = true;
+        }
+
+     
     }
 
-  
+    IEnumerator TextDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        showEndOfFuel.SetActive(false);
+    }
 
 
-   void TaskOnClick()
+    void TaskOnClick()
     {
         ilosc = _ilosc.value;
         slider.maxValue = ilosc;
-        rb.centerOfMass = new Vector3(0f, 0f, -60f);
+        slider.value = ilosc;
+        rb.centerOfMass = new Vector3(0f, 0f, -1f);
+        toogleIsOn = toggle.isOn;
     }
 
+    void Masa()
+    {
+        if (ilosc >= 300) { masa = 5f; }
+        else if ((ilosc < 300) && (ilosc > 250)) { masa = 4.8f; }
+        else if ((ilosc < 250) && (ilosc > 200)) { masa = 4.4f; }
+        else if ((ilosc < 200) && (ilosc > 150)) { masa = 4.2f; }
+        else if ((ilosc < 150) && (ilosc > 100)) { masa = 4f; }
+        else if ((ilosc < 250) && (ilosc > 200)) { masa = 3.8f; }
+        else if ((ilosc < 200) && (ilosc > 150)) { masa = 3.6f; }
+        else if ((ilosc < 150) && (ilosc > 100)) { masa = 3.4f; }
+        else if ((ilosc < 100) && (ilosc > 50)) { masa = 3.2f; }
+        else if (ilosc <= 50) { masa = 3f; }
+        else if (ilosc == 0) { masa = 2.8f; }
+        //else Debug.Log("Blad wywalilo w FalconBoosterSrodkowy w masie");
+        rb.mass = masa;
+    }
 
 
 }

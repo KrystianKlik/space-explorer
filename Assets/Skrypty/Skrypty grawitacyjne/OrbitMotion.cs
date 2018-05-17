@@ -7,11 +7,6 @@ public class OrbitMotion : MonoBehaviour {
     public Transform orbitingObject;
     public Ellipse orbitPath;
 
-    public Rigidbody planeta;
-
-   [Range(1, 100)]
-    public float szybkoscObrotu = 1f;
-
     [Range(0,1)]
     public float orbitProgress = 0f;
     public float orbitPeriod = 3f;

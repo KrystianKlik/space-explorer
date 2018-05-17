@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ObrotPlanety : MonoBehaviour {
-    [Range(1,100)]
-    public float szybkoscObrotu = 1f;
+    public float szybkoscObrotu;
 
     // Update is called once per frame
-    void Update () {
-        transform.Rotate(0, Time.deltaTime / szybkoscObrotu , 0, Space.World);
+    void FixedUpdate () {
+        transform.Rotate(0, -szybkoscObrotu , 0, Space.World);
     }
 }

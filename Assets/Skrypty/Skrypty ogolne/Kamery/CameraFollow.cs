@@ -21,9 +21,11 @@ public class CameraFollow : MonoBehaviour
     public float finalInputZ;
     public float smoothX;
     public float smoothY;
+    public float minOddalenie;
+    public float maxOddalenie;
     private float rotY = 0.0f;
     private float rotX = 0.0f;
-
+     
 
 
     // Use this for initialization
@@ -56,7 +58,15 @@ public class CameraFollow : MonoBehaviour
         Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
         transform.rotation = localRotation;
 
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f && transform.localScale.x < maxOddalenie) // forward
+        {
+                transform.localScale += new Vector3(0.05F, 0.05f, 0.05f);
+        }
 
+       else if (Input.GetAxis("Mouse ScrollWheel") < 0f && transform.localScale.z > minOddalenie ) // forward
+        {
+                transform.localScale -= new Vector3(0.05F, 0.05f, 0.05f);
+        }
     }
 
     void LateUpdate()

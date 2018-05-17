@@ -18,7 +18,7 @@ public class PrzelaczanieKamer : MonoBehaviour {
     //AudioListener cameraRightBooster;
     //AudioListener cameraBottomBooster;
 
-
+    
 
     // Use this for initialization
     void Start()
@@ -81,21 +81,23 @@ public class PrzelaczanieKamer : MonoBehaviour {
         {
             cameraOne.SetActive(true);
             cameraOneAudioLis.enabled = true;
-
+           
             cameraTwoAudioLis.enabled = false;
             cameraTwo.SetActive(false);
+            
         }
 
         //Set camera position 2
         if (camPosition == 1)
         {
+
             cameraTwo.SetActive(true);
             cameraTwoAudioLis.enabled = true;
 
             cameraOneAudioLis.enabled = false;
             cameraOne.SetActive(false);
         }
-
+     
 
     }
 }

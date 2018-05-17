@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HelpMenu : MonoBehaviour {
+public class LanderAudio : MonoBehaviour {
+
+    public AudioClip LandrStart;
+    public AudioClip RocketSource;
+
+    
 
 	// Use this for initialization
 	void Start () {

@@ -29,7 +29,7 @@ public class Satelita : MonoBehaviour {
 	void Update () {
         Wysokosc();
         OdczepienieSatelity();
-
+       
     }
 
     public void Wysokosc()
@@ -38,35 +38,36 @@ public class Satelita : MonoBehaviour {
 
         Vector3 direction = rb.position - ziemia.position;
         //float distance = direction.magnitude;
-        wysokosc = Vector3.Distance(rb.transform.position, ziemia.transform.position) * 150;
-         wysokosc -= 3818608 ;
-        if (wysokosc < 200) { predkosc = 0; }
+        wysokosc = Vector3.Distance(rb.transform.position, ziemia.transform.position) * 100;
+        wysokosc -= 2545000;
+        if (wysokosc < 1400) { predkosc = 0; }
         else predkosc = rb.velocity.magnitude * 150;
 
         //Rigidbody rbToAttract = objToAttract.rb;
         //Vector3 direction = rb.position - rbToAttract.position;
         float distance = direction.magnitude;
 
-        if (wysokosc < 10000) wyswietlwysokosc.text = "Wysokosc: " + Mathf.RoundToInt(wysokosc).ToString() + "m";
-           else wyswietlwysokosc.text = "Wysokosc: " + Mathf.RoundToInt(wysokosc / 1000).ToString() + "km";
-           wyswietlPredkosc.text = "Predkosc: " + Mathf.RoundToInt(predkosc).ToString() + "km/h";
+       // if (wysokosc < 10000 && wysokosc >500) wyswietlwysokosc.text = "Wysokosc: " + Mathf.RoundToInt(wysokosc).ToString() + "m";
+       // else if(wysokosc <= 700) wyswietlwysokosc.text = "Wysokosc: 0km";
+        wyswietlwysokosc.text = "Wysokosc: " + Mathf.RoundToInt(wysokosc / 1000).ToString() + "km";
+        wyswietlPredkosc.text = "Predkosc: " + Mathf.RoundToInt(predkosc).ToString() + "km/h";
     }
 
      void OdczepienieSatelity()
      {
-            if (Input.GetKeyDown(KeyCode.L) && OwiewkaLewaCFJ == null && OwiewkaPrawaCFJ == null && odczepione)
-            {
-                CFJ.breakForce = 0;
-                odczepione = false;
-          //  rb.AddRelativeForce(0, 0, 5f, ForceMode.Impulse);
+        if (Input.GetKeyDown(KeyCode.L) && OwiewkaLewaCFJ == null && OwiewkaPrawaCFJ == null && odczepione)
+        {
+            CFJ.breakForce = 0;
+            odczepione = false;
+            StartCoroutine(Moc());
+
         }
-           //if (!odczepione)
-           //{
-           // float Timer = 2f;
-           // Timer -= Time.time;
-           // if (Timer <= 0)
-                
-           // }
+    }
+
+    IEnumerator Moc()
+    {
+        yield return new WaitForSeconds(.1f);
+        rb.AddRelativeForce(0, 0, 1f, ForceMode.Impulse);
     }
 
 }

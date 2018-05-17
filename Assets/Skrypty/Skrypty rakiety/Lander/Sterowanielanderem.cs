@@ -5,7 +5,7 @@ using UnityEngine;
 public class Sterowanielanderem : MonoBehaviour {
 
     public Rigidbody rb;
-    float predkoscObrotu = 20;
+    public float predkoscObrotu = 20;
 
 	// Use this for initialization
 	void Start () {

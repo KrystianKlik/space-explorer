@@ -5,12 +5,18 @@ using UnityEngine.UI;
 
 public class Lander : MonoBehaviour
 {
+    public Text wyswietlWysokosc;
+    public Text wyswietlPredkosc;
 
     public Slider sliderOgranicznik;
     public Rigidbody rb;
+    public Rigidbody ksiezyc;
     float ogranicznik;
     public ParticleSystem PS;
     public float thrust;
+
+    float wysokosc;
+    float predkosc;
 
     // Use this for initialization
     void Start () {
@@ -19,7 +25,7 @@ public class Lander : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-		
+        Wysokosc();
 	}
 
      void FixedUpdate()
@@ -41,8 +47,8 @@ public class Lander : MonoBehaviour
                     ogranicznik = 1;
                 ogranicznik += Time.deltaTime;
 #pragma warning disable CS0618 // Type or member is obsolete
-                if (PS.startSpeed > 4) PS.startSpeed = 4f;
-                PS.startSpeed += (ogranicznik * Time.deltaTime) * 7;
+                if (PS.startSpeed > 2) PS.startSpeed = 2f;
+                PS.startSpeed += (ogranicznik * Time.deltaTime) * 3;
 #pragma warning restore CS0618 // Type or member is obsolete
 
             }
@@ -52,9 +58,9 @@ public class Lander : MonoBehaviour
                 ogranicznik -= Time.deltaTime;
                 if (ogranicznik < 0)
                     ogranicznik = 0;
-                if (PS.startSpeed < 0.2f) PS.startSpeed = 0.2f;
+                if (PS.startSpeed < 0.05f) PS.startSpeed = 0.05f;
 #pragma warning disable CS0618 // Type or member is obsolete
-                PS.startSpeed -= (ogranicznik * Time.deltaTime) * 7;
+                PS.startSpeed -= (ogranicznik * Time.deltaTime) * 3;
 #pragma warning restore CS0618 // Type or member is obsolete
 
             }
@@ -69,6 +75,29 @@ public class Lander : MonoBehaviour
                 PS.Stop();
             }
         }
+
+    public void Wysokosc()
+    {
+        
+
+        Vector3 direction = rb.position - ksiezyc.position;
+        //float distance = direction.magnitude;
+        wysokosc = Vector3.Distance(rb.transform.position, ksiezyc.transform.position) * 100;
+        wysokosc -= 503596;
+
+
+
+        if (wysokosc < 600) { predkosc = 0; }
+        else predkosc = rb.velocity.magnitude * 150;
+
+     
+
+        
+        wyswietlWysokosc.text = "Wysokosc: " + Mathf.RoundToInt(wysokosc / 1000).ToString() + "km";
+        wyswietlPredkosc.text = "Predkosc: " + Mathf.RoundToInt(predkosc).ToString() + "km/h";
+    }
+
+
 }
 
 
