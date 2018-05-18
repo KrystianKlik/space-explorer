@@ -67,7 +67,7 @@ public class FalconBoostery : MonoBehaviour
     {
         Odczepienie();
 
-        Masa();
+        //Masa();
 
 
 

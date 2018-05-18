@@ -145,7 +145,7 @@ public class FalconBoosterSrodkowy : MonoBehaviour
     IEnumerator Moc()
     {
         yield return new WaitForSeconds(.1f);
-       booster.AddRelativeForce(0, 0, -25f, ForceMode.Impulse);
+       booster.AddRelativeForce(0, 0, -0.001f, ForceMode.Impulse);
     }
 
 

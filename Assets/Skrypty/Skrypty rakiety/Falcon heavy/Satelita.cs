@@ -49,8 +49,8 @@ public class Satelita : MonoBehaviour {
 
        // if (wysokosc < 10000 && wysokosc >500) wyswietlwysokosc.text = "Wysokosc: " + Mathf.RoundToInt(wysokosc).ToString() + "m";
        // else if(wysokosc <= 700) wyswietlwysokosc.text = "Wysokosc: 0km";
-        wyswietlwysokosc.text = "Wysokosc: " + Mathf.RoundToInt(wysokosc / 1000).ToString() + "km";
-        wyswietlPredkosc.text = "Predkosc: " + Mathf.RoundToInt(predkosc).ToString() + "km/h";
+        wyswietlwysokosc.text = "Altitude: " + Mathf.RoundToInt(wysokosc / 1000).ToString() + "km";
+        wyswietlPredkosc.text = "Speed: " + Mathf.RoundToInt(predkosc).ToString() + "km/h";
     }
 
      void OdczepienieSatelity()
@@ -67,7 +67,7 @@ public class Satelita : MonoBehaviour {
     IEnumerator Moc()
     {
         yield return new WaitForSeconds(.1f);
-        rb.AddRelativeForce(0, 0, 1f, ForceMode.Impulse);
+        rb.AddRelativeForce(0, 0, 0.0005f, ForceMode.Impulse);
     }
 
 }

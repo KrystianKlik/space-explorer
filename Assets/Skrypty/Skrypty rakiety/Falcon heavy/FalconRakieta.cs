@@ -60,7 +60,7 @@ public class FalconRakieta : MonoBehaviour {
        
         Button btn = yourButton.GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);
-        Masa();
+      //  Masa();
     }
 
     void FixedUpdate()
