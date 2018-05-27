@@ -13,9 +13,21 @@ EditorBuildSettings:
     guid: 8b1baf7bdf836ff4a8e59e21722fdd0b
   - enabled: 1
     path: Assets/Poziomy/Ksiezyc.unity
-    guid: 4069bbea14a493c46ab5f315f987647b
+    guid: a95880391666bd24e8aa3e06a1ed95a3
   - enabled: 1
     path: Assets/Poziomy/Awaria.unity
+    guid: 9ccd173289ad50f4d9ce4248e93980f1
+  - enabled: 1
+    path: Assets/Poziomy/SpaceX Demo.unity
+    guid: 72e7b412d1b2ede4bad87dbc40dfc5e3
+  - enabled: 0
+    path: 
+    guid: b5d8a73c4a8dc264bae23b297351276d
+  - enabled: 0
+    path: 
+    guid: 4069bbea14a493c46ab5f315f987647b
+  - enabled: 0
+    path: 
     guid: 59e69e31f3fc7c94c97656a432b1ac9b
   - enabled: 0
     path: 

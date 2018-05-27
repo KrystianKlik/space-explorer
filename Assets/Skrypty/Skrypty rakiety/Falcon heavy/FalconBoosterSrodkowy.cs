@@ -157,7 +157,8 @@ public class FalconBoosterSrodkowy : MonoBehaviour
         slider.maxValue = ilosc;
         slider.value = ilosc;
         var main = PS.main;
-        main.startSpeed = ciag / 20;
+        if(ciag == 0) PS.Stop(); 
+        else main.startSpeed = ciag * 1100;
 
 
     }

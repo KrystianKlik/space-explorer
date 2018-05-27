@@ -30,7 +30,15 @@ public class GlowneMenu : MonoBehaviour {
             Application.LoadLevel("Awaria");
 #pragma warning restore CS0618 // Type or member is obsolete
         }
-        
+
+
+        else if (numerPoziomu == 4)
+        {
+#pragma warning disable CS0618 // Type or member is obsolete
+            Application.LoadLevel("SpaceX Demo");
+#pragma warning restore CS0618 // Type or member is obsolete
+        }
+
     }
 
 		public void QuitGame()

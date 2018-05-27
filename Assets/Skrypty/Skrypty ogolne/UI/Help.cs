@@ -10,7 +10,10 @@ public class Help : MonoBehaviour {
     public GameObject helpMenu;
     public GameObject time;
     public GameObject booster;
-   
+    public GameObject helpText;
+
+    public Button yourButton;
+
     // Use this for initialization
     void Start() {
 
@@ -20,6 +23,9 @@ public class Help : MonoBehaviour {
     void Update()
     {
 
+        Button btn = yourButton.GetComponent<Button>();
+        btn.onClick.AddListener(TaskOnClick);
+
         if (Input.GetKeyDown("f1"))
         {
             if (GameIsPaused)
@@ -28,6 +34,7 @@ public class Help : MonoBehaviour {
             }
             else
             {
+                if (!booster.activeSelf)
                 Pause();      
             }
 
@@ -52,5 +59,9 @@ public class Help : MonoBehaviour {
         GameIsPaused = true;
     }
 
+    void TaskOnClick()
+    {
+        helpText.SetActive(true);
+    }
     
 }

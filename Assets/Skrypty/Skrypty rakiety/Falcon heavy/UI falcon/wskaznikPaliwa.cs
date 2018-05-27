@@ -8,6 +8,7 @@ public class wskaznikPaliwa : MonoBehaviour {
     public Slider slider;
     float odliczanie;
     public float dlugosc = 20f;
+    public GameObject SliderOgranicznik;
 
 	// Use this for initialization
 	void Start () {

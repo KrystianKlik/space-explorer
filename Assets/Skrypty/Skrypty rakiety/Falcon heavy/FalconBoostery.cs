@@ -12,7 +12,8 @@ public class FalconBoostery : MonoBehaviour
     bool odczepionyPrzezAwarie = false;
     public bool zepsuty = false; //to zmienna do misji 2
     bool wcisnietoSpacje = false;
-    public float mocOdczepienia;
+
+    public float odczepienie;
 
     public Button yourButton;
 
@@ -56,7 +57,7 @@ public class FalconBoostery : MonoBehaviour
         paliwo = false;
        // booster.isKinematic = true;
         masa = mass;
-        timeForFailure = Random.Range(20000, 200000);
+        timeForFailure = Random.Range(30 , 65);
         // Debug.Log(time);
   
     }
@@ -96,7 +97,7 @@ public class FalconBoostery : MonoBehaviour
 
         if(paliwo && odczepione)
         {
-            if (ilosc > 0)
+            if (ilosc > 0 && ciag > 0)
             {
                
                 booster.AddRelativeForce(Vector3.forward * ciag * Time.deltaTime);
@@ -138,9 +139,14 @@ public class FalconBoostery : MonoBehaviour
             if (!odczepionyPrzezAwarie) { CFJ.breakForce = 0; PS.Stop(); }
             odczepione = false;
             booster.constraints = RigidbodyConstraints.None;
-          
-         
+            StartCoroutine(Moc());
+
         }
+    }
+    IEnumerator Moc()
+    {
+        yield return new WaitForSeconds(.1f);
+        booster.AddRelativeForce(odczepienie, 0, -0.001f, ForceMode.Impulse);
     }
 
 
@@ -183,7 +189,8 @@ public class FalconBoostery : MonoBehaviour
         slider.maxValue = ilosc;
         slider.value = ilosc;
         var main = PS.main;
-        main.startSpeed = ciag / 20;
+        if (ciag == 0) PS.Stop();
+        else main.startSpeed = ciag * 500;
     }
 
     void Masa()

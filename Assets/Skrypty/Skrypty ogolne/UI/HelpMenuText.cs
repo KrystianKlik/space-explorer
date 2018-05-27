@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class HelpMenuText : MonoBehaviour {
 
-    public float textDelay;
+
     public GameObject helpText;
+
 
 
 	// Use this for initialization
 	void Start () {
-        StartCoroutine(text(textDelay));
+        StartCoroutine(text(5));
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(KeyCode.F1) || Input.GetKey(KeyCode.Space))
+        if ((Input.GetKey(KeyCode.F1) || Input.GetKey(KeyCode.Space)))
             helpText.SetActive(false);
     }
 

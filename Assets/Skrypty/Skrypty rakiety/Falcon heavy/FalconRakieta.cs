@@ -103,7 +103,10 @@ public class FalconRakieta : MonoBehaviour {
                 ogranicznik -= Time.deltaTime;
                 if (ogranicznik < 0)
                     ogranicznik = 0;
-                if (PS.startSpeed < 0.2f) PS.startSpeed = 0.2f;
+                if (PS.startSpeed < 0.2f)
+                {
+                    PS.startSpeed = 0.2f;
+                }
 #pragma warning disable CS0618 // Type or member is obsolete
                 PS.startSpeed -= (ogranicznik * Time.deltaTime) * 7;
 #pragma warning restore CS0618 // Type or member is obsolete
