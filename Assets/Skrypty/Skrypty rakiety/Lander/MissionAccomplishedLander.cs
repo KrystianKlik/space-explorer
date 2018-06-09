@@ -25,6 +25,8 @@ public class MissionAccomplishedLander : MonoBehaviour {
         {
             missionAccomplish.SetActive(true);
             Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 }

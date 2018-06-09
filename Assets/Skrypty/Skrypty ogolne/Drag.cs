@@ -14,23 +14,13 @@ public class Drag : MonoBehaviour {
 
     public GameObject explosionEffect;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
 	// Update is called once per frame
 	void Update () {
-
         wysokosc = Vector3.Distance(rb.transform.position, ziemia.transform.position) * 100;
         wysokosc -= 2545000;
-
         predkosc = rb.velocity.magnitude * 150;
-
-            
         Atmosfera();
         Tarcie();
-
     }
 
     public void Atmosfera()
@@ -49,7 +39,6 @@ public class Drag : MonoBehaviour {
 
     public void Tarcie()
     {
-      
         if ((wysokosc > 50000) && (wysokosc < 90000) && (predkosc > 2500))
         {
             tarcie.Play();
@@ -58,11 +47,8 @@ public class Drag : MonoBehaviour {
                 Instantiate(explosionEffect, transform.position, transform.rotation);
                 Destroy(rb.gameObject);
             }
-
         }
         else
             tarcie.Stop();
     }
-
-
 }

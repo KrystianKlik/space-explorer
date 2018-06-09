@@ -578,9 +578,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 127
+  m_MaxValue: 130
   m_WholeNumbers: 0
-  m_Value: 127
+  m_Value: 130
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -663,12 +663,10 @@ MonoBehaviour:
   CFJ: {fileID: 766487777}
   rb: {fileID: 53958937}
   ziemia: {fileID: 929379423}
-  odczepione: 0
   PS: {fileID: 1822759458}
   thrust: 0.0001
   toogleIsOn: 0
   ogranicznik: 0
-  mass: 1
 --- !u!114 &53958940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -788,7 +786,7 @@ MonoBehaviour:
   sliderOgranicznik: {fileID: 1135438717}
   slider: {fileID: 801263086}
   sateliteRb: {fileID: 245044736}
-  ilosc: 150
+  ilosc: 135
   CFJ: {fileID: 766487777}
   Satelite: {fileID: 977443865}
   ogranicznik: 0
@@ -1209,7 +1207,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 1.0000008, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.013163328, y: 1.4033365, z: 2.0863602}
+  m_ConnectedAnchor: {x: 0.013160706, y: 1.4033365, z: 2.0863626}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -6742,7 +6740,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 1.000001, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.013163328, y: 1.4033365, z: 2.0863602}
+  m_ConnectedAnchor: {x: 0.013160706, y: 1.4033365, z: 2.0863626}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -14105,7 +14103,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 379975357}
-  m_LocalRotation: {x: 0.71716505, y: 0.5976664, z: 0.2555024, w: 0.25137156}
+  m_LocalRotation: {x: 0.7171651, y: 0.59766644, z: 0.25550243, w: 0.2513716}
   m_LocalPosition: {x: 0.866537, y: -0.132021, z: 0.475079}
   m_LocalScale: {x: 0.00016224348, y: 0.00016224344, z: 0.00016224344}
   m_Children:
@@ -18618,9 +18616,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 165
+  m_MaxValue: 150
   m_WholeNumbers: 0
-  m_Value: 165
+  m_Value: 150
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -22683,7 +22681,7 @@ MonoBehaviour:
   finalInputZ: 0
   smoothX: 0
   smoothY: 0
-  minOddalenie: 0.2
+  minOddalenie: 0.1
   maxOddalenie: 2
 --- !u!4 &667786991
 Transform:
@@ -26604,7 +26602,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 1.0000007, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0011668205, y: 0.999928, z: -1.6115946}
+  m_ConnectedAnchor: {x: -0.0011696815, y: 0.9999294, z: -1.6115937}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -27197,9 +27195,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 120
+  m_MaxValue: 130
   m_WholeNumbers: 0
-  m_Value: 120
+  m_Value: 130
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -29459,7 +29457,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 1.0234383, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.02523756, y: 0.42072153, z: 1.8932892}
+  m_ConnectedAnchor: {x: 0.025233269, y: 0.42072725, z: 1.8932917}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -31800,7 +31798,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showEndOfFuel: {fileID: 792950571}
-  zepsuty: 0
   odczepienie: 0.001
   yourButton: {fileID: 2081369914}
   slider: {fileID: 1853948106}
@@ -31809,8 +31806,8 @@ MonoBehaviour:
   ziemia: {fileID: 929379423}
   booster: {fileID: 1374297171}
   CFJ: {fileID: 1374297169}
-  mass: 1
   odczepione: 1
+  zepsuty: 0
   PS: {fileID: 326953743}
 --- !u!136 &1374297168
 CapsuleCollider:
@@ -31837,7 +31834,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 1.000001, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 2.0834157, y: 0.9977982, z: -0.2743472}
+  m_ConnectedAnchor: {x: 2.0834143, y: 0.99779963, z: -0.27434337}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -32037,7 +32034,7 @@ MonoBehaviour:
   odczepienie: 0.001
   showEndOfFuel: {fileID: 792950571}
   rb: {fileID: 1374297171}
-  ilosc: 127
+  ilosc: 130
   PS: {fileID: 326953743}
   CFJ: {fileID: 1374297169}
 --- !u!1 &1378748155
@@ -49152,10 +49149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 789d0b9c7cb32f945b2c8ad84706938a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  helpMenu: {fileID: 1093336540}
+  helpMenu: {fileID: 113532982}
   time: {fileID: 2076804235}
   booster: {fileID: 153825353}
-  helpText: {fileID: 1660745603}
+  helpText: {fileID: 1093336540}
   yourButton: {fileID: 2081369914}
 --- !u!114 &1787441201
 MonoBehaviour:
@@ -49531,9 +49528,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 127
+  m_MaxValue: 130
   m_WholeNumbers: 0
-  m_Value: 127
+  m_Value: 130
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -50385,7 +50382,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a64c5aa5abcbf94e921d8a687067c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotation: {x: 0, y: 0, z: 0, w: 1}
   showEndOfFuel: {fileID: 1949534696}
   CountdwonSound: {fileID: 1540489455}
   CFJ: {fileID: 766487777}
@@ -50396,7 +50392,7 @@ MonoBehaviour:
   slider: {fileID: 521040302}
   rb: {fileID: 1895693844}
   timeEngineStart: 20
-  ilosc: 165
+  ilosc: 150
 --- !u!1 &1949534696
 GameObject:
   m_ObjectHideFlags: 0
@@ -55435,6 +55431,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2076804237}
   - component: {fileID: 2076804236}
+  - component: {fileID: 2076804238}
   m_Layer: 0
   m_Name: Time
   m_TagString: Untagged
@@ -55468,6 +55465,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2076804238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2076804235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d394d721e1d4024aa41d9fbbb4535d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2077112326
 GameObject:
   m_ObjectHideFlags: 0
@@ -55554,7 +55562,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showEndOfFuel: {fileID: 952529859}
-  zepsuty: 0
   odczepienie: -0.001
   yourButton: {fileID: 2081369914}
   slider: {fileID: 48111047}
@@ -55563,8 +55570,8 @@ MonoBehaviour:
   ziemia: {fileID: 929379423}
   booster: {fileID: 2077112333}
   CFJ: {fileID: 2077112331}
-  mass: 1
   odczepione: 1
+  zepsuty: 0
   PS: {fileID: 438039508}
 --- !u!153 &2077112331
 ConfigurableJoint:
@@ -55577,7 +55584,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.99218845, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.0707185, y: 0.99078786, z: -0.32261646}
+  m_ConnectedAnchor: {x: -2.0707219, y: 0.99079084, z: -0.32261264}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -55775,7 +55782,7 @@ MonoBehaviour:
   odczepienie: -0.001
   showEndOfFuel: {fileID: 952529859}
   rb: {fileID: 2077112333}
-  ilosc: 127
+  ilosc: 130
   PS: {fileID: 438039508}
   CFJ: {fileID: 2077112331}
 --- !u!1 &2081369912

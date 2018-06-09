@@ -23,7 +23,7 @@ public class MissonAccomplishedFalcon : MonoBehaviour {
         altitude = Vector3.Distance(rb.transform.position, ziemia.transform.position) * 100;
         altitude -= 2545000;
 
-        if(altitude > 100000 && altitude < 3000000)
+        if(altitude > 100000 && altitude < 6000000)
         {
             time -= Time.deltaTime;
            // Debug.Log(time);
@@ -38,6 +38,7 @@ public class MissonAccomplishedFalcon : MonoBehaviour {
             missionAccomplish.SetActive(true);
             Time.timeScale = 0;
             clicked = true;
+          
         }
  
     }

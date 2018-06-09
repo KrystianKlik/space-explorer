@@ -662,12 +662,10 @@ MonoBehaviour:
   CFJ: {fileID: 766487777}
   rb: {fileID: 53958937}
   ziemia: {fileID: 929379423}
-  odczepione: 0
   PS: {fileID: 1822759458}
   thrust: 0.0001
   toogleIsOn: 0
   ogranicznik: 0
-  mass: 1
 --- !u!114 &53958940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31754,7 +31752,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showEndOfFuel: {fileID: 792950571}
-  zepsuty: 0
   odczepienie: 0.001
   yourButton: {fileID: 2081369914}
   slider: {fileID: 1853948106}
@@ -31763,8 +31760,8 @@ MonoBehaviour:
   ziemia: {fileID: 929379423}
   booster: {fileID: 1374297171}
   CFJ: {fileID: 1374297169}
-  mass: 1
   odczepione: 1
+  zepsuty: 0
   PS: {fileID: 326953743}
 --- !u!136 &1374297168
 CapsuleCollider:
@@ -55354,7 +55351,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showEndOfFuel: {fileID: 952529859}
-  zepsuty: 0
   odczepienie: -0.001
   yourButton: {fileID: 2081369914}
   slider: {fileID: 48111047}
@@ -55363,8 +55359,8 @@ MonoBehaviour:
   ziemia: {fileID: 929379423}
   booster: {fileID: 2077112333}
   CFJ: {fileID: 2077112331}
-  mass: 1
   odczepione: 1
+  zepsuty: 0
   PS: {fileID: 438039508}
 --- !u!153 &2077112331
 ConfigurableJoint:

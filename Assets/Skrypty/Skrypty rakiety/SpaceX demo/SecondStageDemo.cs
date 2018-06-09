@@ -18,15 +18,13 @@ public class SecondStageDemo : MonoBehaviour {
     public ConfigurableJoint CFJ;
     public ConfigurableJoint Satelite;
 
-   public float ogranicznik = 0;
+    public float ogranicznik = 0;
 
     float timeForIgnition1 = 50;
     float timeForIgnition2 = 90f;
-    float timeForIgnition3 = 155f;
+    float timeForIgnition3 = 160f;
 
     float timeToFirstRotate = 85f;
-   // float timeToSecondRotate = 30f;
-  //  float timeToThirdRotate = 60f;
 
     public Rigidbody rb;
     public Rigidbody ziemia;
@@ -34,7 +32,6 @@ public class SecondStageDemo : MonoBehaviour {
     float thrust = 0.0001f;
 
     float timea = 10;
-
 
     float time1 = 20f;
     float time2 = 10f;
@@ -45,22 +42,15 @@ public class SecondStageDemo : MonoBehaviour {
 
     public ParticleSystem PS;
 
-    // Use this for initialization
-    void Start () {
-      
-     
-	}
-	
-	// Update is called once per frame
-	void Update () {
- 
-	}
+     void Update()
+    {
+        TimeOFF();
+    }
 
     void FixedUpdate()
     {
         Leci();
         Rotate();
-        TimeOFF();
     }
 
     void TimeOFF()
@@ -75,20 +65,15 @@ public class SecondStageDemo : MonoBehaviour {
 
     void Leci()
     {
-        
         if (CFJ == null && !odczepienieSatelity)
         {
-           
-           
-         
-
             rb.constraints = RigidbodyConstraints.FreezeRotation;
             SliderOgranicznik.SetActive(true);
             sliderOgranicznik.value = ogranicznik;
 
-            timeForIgnition1 -= Time.fixedDeltaTime;
-            timeForIgnition2 -= Time.fixedDeltaTime;
-            timeForIgnition3 -= Time.fixedDeltaTime;
+            timeForIgnition1 -= Time.deltaTime;
+            timeForIgnition2 -= Time.deltaTime;
+            timeForIgnition3 -= Time.deltaTime;
 
             time1 -= Time.deltaTime;
 
@@ -97,16 +82,12 @@ public class SecondStageDemo : MonoBehaviour {
 
             if (time1 >= 0)
             {
-
                 if(ogranicznik>=0 && ogranicznik <= 1)
                 {
                     ogranicznik += Time.deltaTime/4;
-                  
-                    PS.startSpeed += ((ogranicznik * Time.deltaTime) * 15);
-                   
+                    PS.startSpeed += ((ogranicznik * Time.deltaTime) * 15);   
                 }
             }
-
 
             if (timeForIgnition1 <= 0)
             {
@@ -114,14 +95,9 @@ public class SecondStageDemo : MonoBehaviour {
                 if (time2 >= 0)
                 { 
                     ogranicznik -= Time.deltaTime / 4;
-             
-                PS.startSpeed -= ((ogranicznik * Time.fixedDeltaTime) * 15);
+                    PS.startSpeed -= ((ogranicznik * Time.deltaTime) * 15);
                 }
             }
-
-            
-
-            
 
             if (timeForIgnition2 <= 0)
             {
@@ -129,8 +105,7 @@ public class SecondStageDemo : MonoBehaviour {
                 if(time3 >= 0)
                 { 
                     ogranicznik += Time.deltaTime / 4;
-                  
-                    PS.startSpeed += ((ogranicznik * Time.fixedDeltaTime) * 7);
+                    PS.startSpeed += ((ogranicznik * Time.deltaTime) * 7);
                 }
             }
             Debug.Log(time4);
@@ -141,7 +116,7 @@ public class SecondStageDemo : MonoBehaviour {
                 if (time4 >= 0)
                 {
                     ogranicznik -= Time.deltaTime / 4;
-                PS.startSpeed -= ((ogranicznik * Time.fixedDeltaTime) * 7);
+                    PS.startSpeed -= ((ogranicznik * Time.deltaTime) * 7);
                 }
             }
             if (time4 <= 0 && !odczepienieSatelity)
@@ -151,7 +126,6 @@ public class SecondStageDemo : MonoBehaviour {
                 StartCoroutine(Moc());
                 odczepienieSatelity = true;
             }
-
 
                 if (ogranicznik > 0)
             {
@@ -164,10 +138,8 @@ public class SecondStageDemo : MonoBehaviour {
             {
                 PS.Stop();
             }
-
         }
     }
-
     IEnumerator Moc()
     {
         yield return new WaitForSeconds(.1f);
@@ -175,38 +147,21 @@ public class SecondStageDemo : MonoBehaviour {
     }
 
     void Rotate()
-    {
-       
+    {  
         if (CFJ == null)
         {
             timeToFirstRotate -= Time.deltaTime;
-            //timeToSecondRotate -= Time.deltaTime;
-            //timeToThirdRotate -= Time.deltaTime;
+           
 
             if (timeToFirstRotate <= 0)
             {
                 timea -= Time.deltaTime;
                 if (timea >= 0)
                 {
-                    transform.Rotate(Vector3.down * Time.deltaTime * 2); // Rotate the object around its local X axis at 5 degrees per second ZAPAMIETAJ
+                    transform.Rotate(Vector3.down * Time.deltaTime * 2); 
                     transform.Rotate(Vector3.left * Time.deltaTime * 3);
                 }
             }
-
-            //if(timeToSecondRotate <= 0)
-            //{
-            //    timeb -= Time.deltaTime;
-            //    if(timeb >=0)
-            //        transform.Rotate(Vector3.down * Time.deltaTime * 3);
-            //}
-
-            //if(timeToThirdRotate <=0)
-            //{
-            //    timec -= Time.deltaTime;
-            //    if (timec >= 0)
-            //        transform.Rotate(Vector3.left * Time.deltaTime * 3);
-            //}
-           
         }
     }
 }

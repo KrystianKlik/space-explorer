@@ -1,31 +1,22 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class Czas : MonoBehaviour {
-
+public class Czas : MonoBehaviour{
     public Text time;
     public GameObject timeGameObj;
 
-
      void Update()
     {
-  
-
         ZmianaCzasu();
-        
     }
 
     public void ZmianaCzasu()
     {
-       
-
         if (Input.GetKey(KeyCode.P))
         {
             time.text = "Time: Paused";
             Time.timeScale = 0f;
         }
-
-    
 
        else if (Input.GetKey(KeyCode.Alpha1))
         {
@@ -56,7 +47,7 @@ public class Czas : MonoBehaviour {
         }
        else if (Input.GetKey(KeyCode.Alpha5))
         {
-            Time.timeScale = 16f;  //powyżej tej wartosci już się ścina
+            Time.timeScale = 16f;  //powyżej tej wartosci już się przycina
             time.text = "Time: x16";
         }
        else if (Input.GetKey(KeyCode.Alpha6))
@@ -65,5 +56,4 @@ public class Czas : MonoBehaviour {
             time.text = "Time: x100";
         }
     }
-
 }

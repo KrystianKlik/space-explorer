@@ -15,12 +15,10 @@ public class FalconRakieta : MonoBehaviour {
     public Button yourButton;
     
     public float ilosc;
-
     public ConfigurableJoint CFJ;
   
     public Rigidbody rb;
     public Rigidbody ziemia;
-    [SerializeField]
 
     bool odczepione = false;
 
@@ -28,39 +26,20 @@ public class FalconRakieta : MonoBehaviour {
     public float thrust;
     public bool toogleIsOn;
 
- 
-
     private float wysokosc;
     private float predkosc;
-
-    float bodyLenght;
-
     public float ogranicznik;
-
-    public float mass = 1f;
-    float masa;
     bool text = false;
-    
-
-    //bool zrobione = true;
-    //cwałująca Valkiria 
-    //odyseja kosmiczna
 
     void Start()
     {
-      
-       
         PS.Stop();
-        masa = mass;
-
     }
         
     void Update()
     {
-       
         Button btn = yourButton.GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);
-      //  Masa();
     }
 
     void FixedUpdate()
@@ -70,12 +49,8 @@ public class FalconRakieta : MonoBehaviour {
 
     public void Leci()
     {
-        
-    
-
         if (CFJ)
         { odczepione = true; }
-           
        else if(odczepione && (ilosc >0))
         {
             if (!toogleIsOn)
@@ -113,8 +88,6 @@ public class FalconRakieta : MonoBehaviour {
 
             }
 
-
-
             if (ogranicznik > 0)
                 {
                     rb.AddRelativeForce(Vector3.forward * thrust * ogranicznik);
@@ -135,8 +108,6 @@ public class FalconRakieta : MonoBehaviour {
             PS.Stop();
             text = true;
         }
-
-     
     }
 
     IEnumerator TextDelay(float delay)
@@ -144,7 +115,6 @@ public class FalconRakieta : MonoBehaviour {
         yield return new WaitForSeconds(delay);
         showEndOfFuel.SetActive(false);
     }
-
 
     void TaskOnClick()
     {
@@ -154,23 +124,4 @@ public class FalconRakieta : MonoBehaviour {
         rb.centerOfMass = new Vector3(0f, 0f, -1f);
         toogleIsOn = toggle.isOn;
     }
-
-    void Masa()
-    {
-        if (ilosc >= 300) { masa = 5f; }
-        else if ((ilosc < 300) && (ilosc > 250)) { masa = 4.8f; }
-        else if ((ilosc < 250) && (ilosc > 200)) { masa = 4.4f; }
-        else if ((ilosc < 200) && (ilosc > 150)) { masa = 4.2f; }
-        else if ((ilosc < 150) && (ilosc > 100)) { masa = 4f; }
-        else if ((ilosc < 250) && (ilosc > 200)) { masa = 3.8f; }
-        else if ((ilosc < 200) && (ilosc > 150)) { masa = 3.6f; }
-        else if ((ilosc < 150) && (ilosc > 100)) { masa = 3.4f; }
-        else if ((ilosc < 100) && (ilosc > 50)) { masa = 3.2f; }
-        else if (ilosc <= 50) { masa = 3f; }
-        else if (ilosc == 0) { masa = 2.8f; }
-        //else Debug.Log("Blad wywalilo w FalconBoosterSrodkowy w masie");
-        rb.mass = masa;
-    }
-
-
 }

@@ -108,6 +108,7 @@
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Audio\CountdownAudio.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Audio\LanderAudio.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Czas.cs" />
+    <Compile Include="Assets\Skrypty\Skrypty ogolne\CzasDemo.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Drag.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Kamery\CameraCollision.cs" />
     <Compile Include="Assets\Skrypty\Skrypty ogolne\Kamery\CameraFollow.cs" />

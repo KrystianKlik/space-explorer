@@ -11,9 +11,7 @@ public class OrbitMotion : MonoBehaviour {
     public float orbitProgress = 0f;
     public float orbitPeriod = 3f;
     public bool orbitActive = true;
-    
-
-                
+       
     // Use this for initialization
     void Start () {
              		if(orbitingObject == null)
@@ -24,11 +22,6 @@ public class OrbitMotion : MonoBehaviour {
         SetOrbitingObjectPosition();
         StartCoroutine(AnimateOrbit());
 	}
-
-    // void Update()
-    //{
-    //    planeta.transform.Rotate(0, 0, (szybkoscObrotu) * Time.deltaTime);
-    //}
 
     void SetOrbitingObjectPosition()
     {
@@ -48,7 +41,4 @@ public class OrbitMotion : MonoBehaviour {
         }
 
     }
-
-
-
 }

@@ -7,42 +7,33 @@ public class SideBoosterDemo : MonoBehaviour {
 
     public Slider slider;
     public float odczepienie;
-
     public GameObject showEndOfFuel;
-
     float timeEngineStart = 20f;
-
     public Rigidbody rb;
-
-    float ciag = 0.04405679f;
-   public float ilosc = 120f;
-
+    float ciag = 0.05005679f;
+    public float ilosc = 120f;
     public ParticleSystem PS;
-
     public ConfigurableJoint CFJ;
-
     bool odczepione = true;
     bool leci;
 
-    // Use this for initialization
-    void Start () {
-     
-    }
-	
 	// Update is called once per frame
 	void Update () {
-        Leci();
+      
         Odczepienie();
 	}
+
+     void FixedUpdate()
+    {
+        Leci();
+    }
 
     void Leci()
     {
         timeEngineStart -= Time.deltaTime;
         if (timeEngineStart <= 0)
         {
-                leci = true; 
-         
-               
+                leci = true;       
             }
         if (leci && ilosc > 0)
         {
@@ -50,7 +41,6 @@ public class SideBoosterDemo : MonoBehaviour {
             ilosc -= Time.deltaTime;
             slider.value = ilosc;
             PS.Play();
-            
         }
         else if(ilosc <= 0)
         {
@@ -75,5 +65,4 @@ public class SideBoosterDemo : MonoBehaviour {
         yield return new WaitForSeconds(.1f);
         rb.AddRelativeForce(odczepienie, 0, -0.008f, ForceMode.Impulse);
     }
-
 }

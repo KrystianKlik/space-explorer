@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class BoostersDemo : MonoBehaviour {
 
-    public Quaternion rotation = Quaternion.identity;
-
     public GameObject showEndOfFuel;
     public GameObject CountdwonSound;
 
@@ -20,7 +18,6 @@ public class BoostersDemo : MonoBehaviour {
     float timeTosecondRotate = 100f;
     float timeToThirdRotate =  120f;
     float timeToForthRotate = 130f;
-  //  float timeToFifthRotate = 170f;
 
     public ParticleSystem PS;
 
@@ -43,22 +40,17 @@ public class BoostersDemo : MonoBehaviour {
     float time3 = 6;
     float time4 = 8;
     float time5 = 5;
-    // Use this for initialization
-    void Start () {
-     
-	}
 	
 	// Update is called once per frame
 	void Update () {
-       // TimeOFF();
+        Odczepienie();
     }
 
      void FixedUpdate()
     {
         Leci();
         Rotate();
-        Odczepienie();
-
+   
     }
 
     void Leci()
@@ -74,11 +66,8 @@ public class BoostersDemo : MonoBehaviour {
                 LaunchPad.breakTorque = 0;
                 LaunchPadBooster.breakForce = 0;
                 LaunchPadBooster.breakTorque = 0;
-            }
-             
+            }    
         }
-  
-
         if (leci && ilosc > 0)
         {
             rb.AddRelativeForce(Vector3.forward * ciag * Time.deltaTime);
@@ -89,9 +78,6 @@ public class BoostersDemo : MonoBehaviour {
         }
         else if(ilosc <= 0) PS.Stop();
     }
-
-   
-
     void Odczepienie()
     {
         if(ilosc <= 0 && odczepione)
@@ -99,9 +85,7 @@ public class BoostersDemo : MonoBehaviour {
             CFJ.breakForce = 0;
             StartCoroutine(Moc());
             odczepione = false;
-
         }
-
     }
 
     IEnumerator Moc()
@@ -109,58 +93,42 @@ public class BoostersDemo : MonoBehaviour {
         yield return new WaitForSeconds(.1f);
         rb.AddRelativeForce(0, 0, -0.003f, ForceMode.Impulse);
     }
-
-
     void Rotate()
     {
         if (countdown)
         {
-
-            timeTofirstRotate -= Time.fixedDeltaTime;
-            timeTosecondRotate -= Time.fixedDeltaTime;
-            timeToThirdRotate -= Time.fixedDeltaTime;
-            timeToForthRotate -= Time.fixedDeltaTime;
-          //  timeToFifthRotate -= Time.fixedDeltaTime;
-
+            timeTofirstRotate -= Time.deltaTime;
+            timeTosecondRotate -= Time.deltaTime;
+            timeToThirdRotate -= Time.deltaTime;
+            timeToForthRotate -= Time.deltaTime;
 
             if (timeTofirstRotate <= 0)
             {
-                time1 -= Time.fixedDeltaTime;
+                time1 -= Time.deltaTime;
                 if (time1 >= 0)
-                    transform.Rotate(Vector3.down * Time.fixedDeltaTime * 3); // Rotate the object around its local X axis at 5 degrees per second ZAPAMIETAJ
-            }
+                    transform.Rotate(Vector3.down * Time.deltaTime * 3);
+            }    // Rotate the object around its local X axis at 3 degrees per second 
 
             if (timeTosecondRotate <= 0)
             {
-                time2 -= Time.fixedDeltaTime;
+                time2 -= Time.deltaTime;
                 if (time2 >= 0)
-                    transform.Rotate(Vector3.down * Time.fixedDeltaTime * 3);
+                    transform.Rotate(Vector3.down * Time.deltaTime * 3);
             }
 
             if (timeToThirdRotate <= 0)
             {
-                time3 -= Time.fixedDeltaTime;
+                time3 -= Time.deltaTime;
                 if (time3 >= 0)
-                    transform.Rotate(Vector3.down * Time.fixedDeltaTime * 3);
+                    transform.Rotate(Vector3.down * Time.deltaTime * 3);
             }
 
             if (timeToForthRotate <= 0)
             {
-                time4 -= Time.fixedDeltaTime;
+                time4 -= Time.deltaTime;
                 if (time4 >= 0)
-                    transform.Rotate(Vector3.down * Time.fixedDeltaTime * 3);
+                    transform.Rotate(Vector3.down * Time.deltaTime * 3);
             }
-
-            //if (timeToFifthRotate <= 0)
-            //{
-            //    time5 -= Time.fixedDeltaTime;
-            //    if (time5 >= 0)
-            //        transform.Rotate(Vector3.down * Time.fixedDeltaTime * 3);
-            //    else if(time5 <= 0)
-            //            countdown = false;
-            //}
         }
-
     }
-
 }

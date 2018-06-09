@@ -10,7 +10,6 @@ public class Lander : MonoBehaviour
 
     public Toggle toggle;
 
-
     public Slider sliderOgranicznik;
     public Rigidbody rb;
     public Rigidbody ksiezyc;
@@ -36,11 +35,6 @@ public class Lander : MonoBehaviour
 
     bool text = false;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
 	// Update is called once per frame
 	void Update () {
         Wysokosc();
@@ -56,8 +50,6 @@ public class Lander : MonoBehaviour
 
     public void Leci()
     {
-
-       
         if (ilosc > 0)
         {
             if (!toogleIsOn)
@@ -92,8 +84,6 @@ public class Lander : MonoBehaviour
 
             }
 
-
-
             if (ogranicznik > 0)
             {
                 rb.AddRelativeForce(Vector3.forward * thrust * ogranicznik);
@@ -114,11 +104,7 @@ public class Lander : MonoBehaviour
             PS.Stop();
             text = true;
         }
-
-
     }
-
-
 
     IEnumerator TextDelay(float delay)
     {
@@ -148,13 +134,10 @@ public class Lander : MonoBehaviour
 
         if(wysokosc < 0) { wysokosc = 0;  predkosc = 0; }
 
-
         if (wysokosc < 600) { predkosc = 0; }
         else predkosc = rb.velocity.magnitude * 150;
         wyswietlPredkosc.text = "Speed: " + Mathf.RoundToInt(predkosc).ToString() + "km/h";
     }
-
-
 
     void TaskOnClick()
     {

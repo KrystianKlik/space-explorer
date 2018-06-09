@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-
     public float CameraMoveSpeed = 120.0f;
     public GameObject CameraFollowObj;
     Vector3 FollowPOS;
@@ -26,8 +25,6 @@ public class CameraFollow : MonoBehaviour
     private float rotY = 0.0f;
     private float rotX = 0.0f;
      
-
-
     // Use this for initialization
     void Start()
     {
@@ -58,12 +55,12 @@ public class CameraFollow : MonoBehaviour
         Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
         transform.rotation = localRotation;
 
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f && transform.localScale.x < maxOddalenie) // forward
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f && transform.localScale.x < maxOddalenie)
         {
                 transform.localScale += new Vector3(0.05F, 0.05f, 0.05f);
         }
 
-       else if (Input.GetAxis("Mouse ScrollWheel") < 0f && transform.localScale.z > minOddalenie ) // forward
+       else if (Input.GetAxis("Mouse ScrollWheel") < 0f && transform.localScale.z > minOddalenie ) 
         {
                 transform.localScale -= new Vector3(0.05F, 0.05f, 0.05f);
         }
@@ -78,7 +75,6 @@ public class CameraFollow : MonoBehaviour
     void CameraUpdater()
     {
         // set the target object to follow
-       
         Transform target = CameraFollowObj.transform;
 
         //move towards the game object that is the target
